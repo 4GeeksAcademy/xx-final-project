@@ -1,12 +1,25 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import '../../styles/signup.css';
 
 export const SignUp = () => {
+  const [
+    showPassword,
+    setShowPassword,
+  ] = useState(false);
+  
+  const togglePassword =
+    () => {
+      setShowPassword(
+        !showPassword
+      );
+    };
+
   return (
     <Form>
       <Form.Group
-        className="mb-3"
+        className="mt-5"
         controlId="formBasicEmail"
       >
         <Form.Label>
@@ -24,26 +37,39 @@ export const SignUp = () => {
       </Form.Group>
 
       <Form.Group
-        className="mb-3"
+        className="mt-3"
         controlId="formBasicPassword"
       >
         <Form.Label>
           Password
         </Form.Label>
         <Form.Control
-          type="password"
+          type={
+            showPassword
+              ? 'text'
+              : 'password'
+          }
           placeholder="Password"
+          className="pass"
         />
+        <div className="eye-icon">
+          <FontAwesomeIcon
+            onClick={
+              togglePassword
+            }
+            className="i-icon"
+            icon={
+              showPassword
+                ? faEyeSlash
+                : faEye
+            }
+          />
+        </div>
       </Form.Group>
       <Form.Group
         className="mb-3"
         controlId="formBasicCheckbox"
-      >
-        <Form.Check
-          type="checkbox"
-          label="Check me out"
-        />
-      </Form.Group>
+      ></Form.Group>
       <Button
         variant="primary"
         type="submit"
@@ -53,5 +79,3 @@ export const SignUp = () => {
     </Form>
   );
 };
-
-// export default SignUp;

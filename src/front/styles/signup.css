@@ -1,0 +1,19 @@
+form {
+  width: 50%;
+  margin: 0 auto;
+  align-self: center;
+}
+
+/* {
+  background-image: url('/workspaces/xx-final-project/public/images/road_desert_sand_landscape_generated_720.jpg');
+} */
+
+.eye-icon {
+  position: absolute;
+}
+.i-icon {
+  position: relative;
+  left: 200px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
