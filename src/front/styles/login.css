@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 .email,
 .pass{
     margin: 5px;
@@ -12,10 +14,12 @@
 }
 
 .login-body{
+    background-image: url(../img/login-background.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 60vh;
+    font-family: 'Lato', sans-serif;
 }
 
 .icons{
@@ -24,7 +28,7 @@
 
 .eye-icon{
    position: relative; 
-   left: 200px;
+   left: 190px;
    font-size: 1.5rem;
    cursor: pointer;
 }
