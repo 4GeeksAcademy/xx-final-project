@@ -4,16 +4,9 @@ form {
   align-self: center;
 }
 
-/* {
-  background-image: url('/workspaces/xx-final-project/public/images/road_desert_sand_landscape_generated_720.jpg');
-} */
-
-.eye-icon {
-  position: absolute;
-}
-.i-icon {
-  position: relative;
-  left: 200px;
-  font-size: 1.5rem;
+.eye {
+  top: 20%;
+  left: 90%;
+  font-size: 1.25rem;
   cursor: pointer;
 }

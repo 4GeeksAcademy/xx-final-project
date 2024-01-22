@@ -1,16 +1,22 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEyeSlash, faEye } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faEye,
+  faEyeSlash,
+} from '@fortawesome/free-solid-svg-icons';
 import '../../styles/signup.css';
+import background from '../../img/login-background.jpg';
 
 export const SignUp = () => {
   const [
     showPassword,
     setShowPassword,
   ] = useState(false);
-  
+
   const togglePassword =
     () => {
       setShowPassword(
@@ -19,6 +25,7 @@ export const SignUp = () => {
     };
 
   return (
+    <div className='background' style={{ backgroundImage: `url(${background})`}}>
     <Form>
       <Form.Group
         className="mt-5"
@@ -45,21 +52,28 @@ export const SignUp = () => {
         <Form.Label>
           Password
         </Form.Label>
-        <Form.Control
-          type={
-            showPassword
-              ? 'text'
-              : 'password'
-          }
-          placeholder="Password"
-          className="pass"
-        />
-        <div className="eye-icon">
-          <FontAwesomeIcon
+        <div
+          style={{
+            position:
+              'relative',
+          }}
+        >
+          <Form.Control
+            type={
+              showPassword
+                ? 'text'
+                : 'password'
+            }
+            placeholder="Enter password"
+          />
+          <FontAwesomeIcon className='eye'
+            style={{
+              position:
+                'absolute',
+            }}
             onClick={
               togglePassword
             }
-            className="i-icon"
             icon={
               showPassword
                 ? faEyeSlash
@@ -67,17 +81,21 @@ export const SignUp = () => {
             }
           />
         </div>
+        <Form.Text className="text-muted">
+          We'll never share
+          your password with
+          anyone else.
+        </Form.Text>
       </Form.Group>
-      <Form.Group
-        className="mb-3"
-        controlId="formBasicCheckbox"
-      ></Form.Group>
+
       <Button
+        className="mt-3"
         variant="primary"
         type="submit"
       >
         Submit
       </Button>
     </Form>
+    </div>
   );
 };
