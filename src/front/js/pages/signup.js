@@ -25,77 +25,85 @@ export const SignUp = () => {
     };
 
   return (
-    <div className='background' style={{ backgroundImage: `url(${background})`}}>
-    <Form>
-      <Form.Group
-        className="mt-5"
-        controlId="formBasicEmail"
-      >
-        <Form.Label>
-          Email address
-        </Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-        />
-        <Form.Text className="text-muted">
-          We'll never share
-          your email with
-          anyone else.
-        </Form.Text>
-      </Form.Group>
-
-      <Form.Group
-        className="mt-3"
-        controlId="formBasicPassword"
-      >
-        <Form.Label>
-          Password
-        </Form.Label>
-        <div
-          style={{
-            position:
-              'relative',
-          }}
+    <div
+      className="background"
+      style={{
+        backgroundImage: `url(${background})`,
+        width: '100%',
+        height: '100vh',
+      }}
+    >
+      <Form>
+        <Form.Group
+          className="mt-5"
+          controlId="formBasicEmail"
         >
+          <Form.Label>
+            Email address
+          </Form.Label>
           <Form.Control
-            type={
-              showPassword
-                ? 'text'
-                : 'password'
-            }
-            placeholder="Enter password"
+            type="email"
+            placeholder="Enter email"
           />
-          <FontAwesomeIcon className='eye'
+          <Form.Text className="text-muted">
+            We'll never share
+            your email with
+            anyone else.
+          </Form.Text>
+        </Form.Group>
+
+        <Form.Group
+          className="mt-3"
+          controlId="formBasicPassword"
+        >
+          <Form.Label>
+            Password
+          </Form.Label>
+          <div
             style={{
               position:
-                'absolute',
+                'relative',
             }}
-            onClick={
-              togglePassword
-            }
-            icon={
-              showPassword
-                ? faEyeSlash
-                : faEye
-            }
-          />
-        </div>
-        <Form.Text className="text-muted">
-          We'll never share
-          your password with
-          anyone else.
-        </Form.Text>
-      </Form.Group>
+          >
+            <Form.Control
+              type={
+                showPassword
+                  ? 'text'
+                  : 'password'
+              }
+              placeholder="Enter password"
+            />
+            <FontAwesomeIcon
+              className="eye"
+              style={{
+                position:
+                  'absolute',
+              }}
+              onClick={
+                togglePassword
+              }
+              icon={
+                showPassword
+                  ? faEyeSlash
+                  : faEye
+              }
+            />
+          </div>
+          <Form.Text className="text-muted">
+            We'll never share
+            your password with
+            anyone else.
+          </Form.Text>
+        </Form.Group>
 
-      <Button
-        className="mt-3"
-        variant="primary"
-        type="submit"
-      >
-        Submit
-      </Button>
-    </Form>
+        <Button
+          className="mt-3"
+          variant="primary"
+          type="submit"
+        >
+          Submit
+        </Button>
+      </Form>
     </div>
   );
 };
