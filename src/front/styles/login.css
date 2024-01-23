@@ -9,3 +9,8 @@ form {
     font-size: 1.25rem;
     cursor: pointer;
   }
+
+.submit-btn{
+    cursor: pointer;
+    margin: 3px;
+}

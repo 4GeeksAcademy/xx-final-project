@@ -21,7 +21,7 @@ export const Login = () => {
         <div className='background' style={{ backgroundImage: `url(${Background})`, width: "100%", height: "100vh"}}>
         <Form>
           <Form.Group
-            className="mt-5"
+            className="mt-1"
             controlId="formBasicEmail"
           >
             <Form.Label>
@@ -74,12 +74,16 @@ export const Login = () => {
             </Form.Text>
           </Form.Group>
           <Button
-            className="mt-3"
+            className="mt-3 submit-btn"
             variant="primary"
             type="submit"
           >
             Submit
           </Button>
+          <Button
+            className="mt-3 submit-btn"
+            variant="primary"
+          >Forgot Password?</Button>
         </Form>
         </div>
       );
