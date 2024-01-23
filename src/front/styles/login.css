@@ -1,31 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+form {
+    width: 50%;
+    margin: 0 auto;
+    align-self: center;
+  }
+  .eye {
+    top: 20%;
+    left: 90%;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
 
-.email,
-.pass {
-  margin: 5px;
-  padding: 1.2rem 1rem;
-  outline: none;
-  border-radius: 4px;
-  font-size: 1.2rem;
-}
-
-.submit-btn {
-  margin: 5px;
-}
-
-.login-body {
-  background-image: url(../img/login-background.jpg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 60vh;
-  font-family: 'Lato',
-    sans-serif;
-}
-
-.eye-icon {
-  position: relative;
-  left: 190px;
-  font-size: 1.5rem;
-  cursor: pointer;
+.submit-btn{
+    cursor: pointer;
+    margin: 3px;
 }
