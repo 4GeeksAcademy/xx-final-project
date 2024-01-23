@@ -3,7 +3,7 @@
 .email,
 .pass{
     margin: 5px;
-    padding: 1.2rem 1rem;
+    padding: 1.2rem 2.2rem;
     outline: none;
     border-radius: 4px;
     font-size: 1.2rem;
@@ -14,7 +14,6 @@
 }
 
 .login-body{
-    background-image: url(../img/login-background.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +27,7 @@
 
 .eye-icon{
    position: relative; 
-   left: 190px;
+   left: 220px;
    font-size: 1.5rem;
    cursor: pointer;
 }

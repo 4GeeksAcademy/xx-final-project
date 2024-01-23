@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import Background from '../../img/login-background.jpg'
 
 import "../../styles/login.css"
 
@@ -12,7 +13,7 @@ export const Login = () => {
     }
 
     return(
-        <div className="login-body text-center mt-5">
+        <div className="login-body text-center mt-5" style={{ backgroundImage: `url(${Background})`, width: "100%", height: "100vh"}}>
             <div className="inputs">
                 <input 
                     className="email" 
