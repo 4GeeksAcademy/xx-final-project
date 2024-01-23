@@ -35,7 +35,7 @@ export const SignUp = () => {
     >
       <Form>
         <Form.Group
-          className="mt-5"
+          className="mt-1"
           controlId="formBasicEmail"
         >
           <Form.Label>
