@@ -10,6 +10,7 @@ import React, {
   } from '@fortawesome/free-solid-svg-icons';
 
 import Background from "../../img/login-background.jpg"
+
 import "../../styles/login.css"
 
 export const Login = () => {

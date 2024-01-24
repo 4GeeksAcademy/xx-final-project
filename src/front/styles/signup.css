@@ -1,0 +1,12 @@
+form {
+  width: 50%;
+  margin: 0 auto;
+  align-self: center;
+}
+
+.eye {
+  top: 20%;
+  left: 90%;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
