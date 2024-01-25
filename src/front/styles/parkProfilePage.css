@@ -1,0 +1,60 @@
+/* Page CSS */
+
+.background {
+    background-size: cover;
+  }
+  
+  /* Park Image CSS */
+  .image-container {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .parkImage {
+    width: 100%;
+    max-width: 1000px;
+    max-height: 573px;
+    margin: 30px;
+    border-radius: 25px;
+  }
+  
+  /* Park Info Card CSS */
+  .card {
+    width: 75%;
+    margin: auto;
+    border-radius: 25px;
+  }
+  
+  .name-text {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .park-name {
+    font-size: 16px;
+    font-weight: 200;
+    color: grey;
+  }
+  
+  .hrs-of-operation-header {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .hours-text {
+    color: black;
+    font-weight: 500;
+  }
+  
+  /* Accordion CSS */
+  .entire-accordion {
+    width: 97%;
+    margin: 0 auto;
+    padding: 80px;
+  }
+  
+  .accordion-button {
+    font-weight: 500;
+    color: black;
+  }
+  
