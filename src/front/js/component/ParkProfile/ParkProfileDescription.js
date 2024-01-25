@@ -8,7 +8,8 @@ import { faClock } from '@fortawesome/free-regular-svg-icons'
 function ParkProfileDescription() {
   return (
     <Card className="parkDescription mb-5">
-      <Card.Header className='name-text'>Name of Park</Card.Header>
+      <Card.Header className='name-text'>Name of Park
+      <p className='park-name'>Placeholder Park Address</p></Card.Header>
       <Card.Body>
         <Card.Title>Description</Card.Title>
         <Card.Text>
@@ -17,7 +18,7 @@ function ParkProfileDescription() {
         <Button variant="primary">Link to more details</Button>
       </Card.Body>
       <Card.Footer>
-        <p className='description-footer-heading'>Hours of Operation</p>
+        <p className='hrs-of-operation-header'>Hours of Operation</p>
         <div className="hours-text">
           <p> <FontAwesomeIcon icon={faClock} /> Monday</p>
           <p> <FontAwesomeIcon icon={faClock} /> Tuesday</p>
