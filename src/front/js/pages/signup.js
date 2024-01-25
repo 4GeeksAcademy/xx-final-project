@@ -1,4 +1,5 @@
 import React, {
+  useContext,
   useState,
 } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -10,8 +11,22 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/signup.css';
 import background from '../../img/login-background.jpg';
+import { Context } from '../store/appContext';
+import { useNavigate } from "react-router-dom"
 
 export const SignUp = () => {
+  const {store, actions} = useContext(Context)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const navigate = useNavigate();
+  
+  const token = sessionStorage.getItem("token")
+  
+  const handleClick = () => {
+    actions.signup(email, password);
+    navigate("/login");
+  };
+
   const [
     showPassword,
     setShowPassword,
@@ -24,6 +39,8 @@ export const SignUp = () => {
       );
     };
 
+  if(store.token && store.token != "" && store.token != undefined) navigate("/")
+
   return (
     <div
       className="background"
@@ -33,7 +50,12 @@ export const SignUp = () => {
         height: '100vh',
       }}
     >
-      <Form>
+      <Form.Label>Sign Up Form</Form.Label>
+        {store.token && store.token != "" && store.token != undefined ? (
+            "You are now signed up!" + token
+        ) : (
+          <div>
+             <Form>
         <Form.Group
           className="mt-1"
           controlId="formBasicEmail"
@@ -100,6 +122,8 @@ export const SignUp = () => {
           Submit
         </Button>
       </Form>
+          </div>
+        )}
     </div>
   );
 };
