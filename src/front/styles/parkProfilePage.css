@@ -1,0 +1,46 @@
+/* Page CSS */
+.background {
+  background-size: cover;
+}
+
+/* Accordion CSS */
+.entire-accordion {
+  width: 95%;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  align-self: center;
+  /* border-radius: 500px; */
+}
+
+.accordion-button {
+  font-weight: 500;
+  color: black;
+}
+
+/* Park Image CSS */
+.parkImage {
+  width: 900px;
+  margin: 30px;
+  border-radius: 25px;
+}
+
+/* Park Description CSS */
+.card {
+  width: 75%;
+  margin: auto;
+  border-radius: 25px;
+}
+
+.name-text {
+  font-weight: 500;
+}
+
+.description-footer-heading {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.hours-text {
+  color: black;
+  font-weight: 500;
+}
