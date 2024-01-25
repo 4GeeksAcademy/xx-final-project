@@ -52,7 +52,7 @@ export const SignUp = () => {
     >
       <Form.Label>Sign Up Form</Form.Label>
         {store.token && store.token != "" && store.token != undefined ? (
-            "You are now signed up!" + token
+            console.log("You are now signed up!" + store.token)
         ) : (
           <div>
              <Form>
@@ -64,8 +64,10 @@ export const SignUp = () => {
             Email address
           </Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
+            type="email" 
+            placeholder="Enter email" 
+            value={email} 
+            onChange={e => setEmail(e.target.value)}
           />
           <Form.Text className="text-muted"></Form.Text>
         </Form.Group>
@@ -84,12 +86,10 @@ export const SignUp = () => {
             }}
           >
             <Form.Control
-              type={
-                showPassword
-                  ? 'text'
-                  : 'password'
-              }
+              type={ showPassword ? 'text' : 'password'}
               placeholder="Enter password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <FontAwesomeIcon
               className="eye"
@@ -118,6 +118,7 @@ export const SignUp = () => {
           className="mt-3"
           variant="primary"
           type="submit"
+          onClick={handleClick}
         >
           Submit
         </Button>

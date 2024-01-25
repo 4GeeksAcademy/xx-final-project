@@ -40,6 +40,9 @@ def sign_up():
     if email is None or password is None:
         return jsonify({"msg": "Bad email or password"}), 401
     
+    if User.query.filter(User.email == email).first() :
+        return jsonify({"msg": "Email already in use"}), 400
+    
     user = User(email=email, password=password, is_active=True)
     db.session.add(user)
     db.session.commit()

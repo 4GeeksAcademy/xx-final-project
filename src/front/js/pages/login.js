@@ -30,7 +30,8 @@ export const Login = () => {
     }
 
     const handleClick = () => {
-      actions.login(email,password)
+      actions.login(email,password); 
+      navigate ("/")
     }
 
     useEffect(() => {
@@ -42,7 +43,7 @@ export const Login = () => {
         <div className='background' style={{ backgroundImage: `url(${Background})`, width: "100%", height: "100vh"}}>
           <Form.Label>Log In Form</Form.Label>
             {store.token && store.token != "" && store.token != undefined ? (
-              "You have successfully logged in"
+              "You have successfully logged in" + store.token
             ) : (
               <div>
                 <Form> 
@@ -83,6 +84,7 @@ export const Login = () => {
                       className="mt-3 submit-btn"
                       variant="primary"
                       type="submit"
+                      onClick={handleClick}
                     >
                       Login
                     </Button>
