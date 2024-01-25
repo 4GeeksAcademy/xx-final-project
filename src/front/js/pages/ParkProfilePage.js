@@ -1,7 +1,7 @@
 import React from 'react';
 import ParkProfileAccordion from '../component/ParkProfile/ParkProfileAccordion';
 import ParkProfileImage from '../component/ParkProfile/ParkProfileImage';
-import ParkProfileDescription from '../component/ParkProfile/ParkProfileDescription';
+import ParkProfileInfo from '../component/ParkProfile/ParkProfileInfo';
 import '../../styles/parkProfilePage.css';
 import background from '../../img/login-background.jpg';
 
@@ -17,9 +17,10 @@ export const ParkProfilePage =
             height: '100%',
           }}
         >
-
-          <ParkProfileImage />
-          <ParkProfileDescription />
+          <div className="side-by-side-container">
+            <ParkProfileImage />
+            <ParkProfileInfo />
+          </div>
           <ParkProfileAccordion />
         </div>
       </>

@@ -7,7 +7,7 @@ import { faClock } from '@fortawesome/free-regular-svg-icons'
 
 function ParkProfileInfo() {
   return (
-    <Card className="parkDescription mb-5">
+    <Card className="parkInfo mb-5">
       <Card.Header className='name-text'>Name of Park
       <p className='park-name'>Placeholder Park Address</p></Card.Header>
       <Card.Body>

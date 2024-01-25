@@ -1,60 +1,66 @@
 /* Page CSS */
 
 .background {
-    background-size: cover;
-  }
-  
-  /* Park Image CSS */
-  .image-container {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .parkImage {
-    width: 100%;
-    max-width: 1000px;
-    max-height: 573px;
-    margin: 30px;
-    border-radius: 25px;
-  }
-  
-  /* Park Info Card CSS */
-  .card {
-    width: 75%;
-    margin: auto;
-    border-radius: 25px;
-  }
-  
-  .name-text {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  
-  .park-name {
-    font-size: 16px;
-    font-weight: 200;
-    color: grey;
-  }
-  
-  .hrs-of-operation-header {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  
-  .hours-text {
-    color: black;
-    font-weight: 500;
-  }
-  
-  /* Accordion CSS */
-  .entire-accordion {
-    width: 97%;
-    margin: 0 auto;
-    padding: 80px;
-  }
-  
-  .accordion-button {
-    font-weight: 500;
-    color: black;
-  }
-  
+  background-size: cover;
+}
+
+.side-by-side-container {
+  display: flex;
+  margin: 0 20px 20px 20px;
+}
+
+.ParkProfileImage,
+.ParkProfileInfo {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+/* Park Image CSS */
+
+.parkImage {
+  width: 95%;
+  height: 87%;
+  margin: 30px 0 10px 30px;
+  border-radius: 25px;
+}
+
+/* Park Info Card CSS */
+.parkInfo {
+  width: 75%;
+  height: 45%;
+  margin: 30px 30px 0 10px;
+  border-radius: 25px;
+}
+
+.name-text {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.park-name {
+  font-size: 16px;
+  font-weight: 200;
+  color: grey;
+}
+
+.hrs-of-operation-header {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.hours-text {
+  color: black;
+  font-weight: 500;
+}
+
+/* Accordion CSS */
+.entire-accordion {
+  width: 95%;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.accordion-button {
+  font-weight: 500;
+  color: black;
+}
