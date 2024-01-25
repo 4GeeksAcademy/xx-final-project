@@ -11,6 +11,7 @@ import { Home } from './pages/home';
 import { Demo } from './pages/demo';
 import { Single } from './pages/single';
 import { SignUp } from './pages/signup';
+import { ParkProfilePage } from './pages/ParkProfilePage';
 import injectContext from './store/appContext';
 
 import { Navbar } from './component/navbar';
@@ -58,6 +59,12 @@ const Layout = () => {
                 <SignUp />
               }
               path="/signup"
+            />
+            <Route
+              element={
+                <ParkProfilePage />
+              }
+              path="/parkprofilepage"
             />
             <Route
               element={
