@@ -36,7 +36,6 @@ export const Login = () => {
 
     useEffect(() => {
       if(store.token && store.token != "" && store.token != undefined) navigate("/")
-      console.log("you should be navigated to somewhere else")
     })
 
     return(
