@@ -8,8 +8,6 @@ import ScrollToTop from './component/scrollToTop';
 import { BackendURL } from './component/backendURL';
 
 import { Home } from './pages/home';
-import { Demo } from './pages/demo';
-import { Single } from './pages/single';
 import { SignUp } from './pages/signup';
 import injectContext from './store/appContext';
 
@@ -58,18 +56,6 @@ const Layout = () => {
                 <SignUp />
               }
               path="/signup"
-            />
-            <Route
-              element={
-                <Demo />
-              }
-              path="/demo"
-            />
-            <Route
-              element={
-                <Single />
-              }
-              path="/single/:theid"
             />
             <Route
               element={
