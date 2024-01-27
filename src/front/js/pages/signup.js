@@ -1,4 +1,5 @@
 import React, {
+  useContext,
   useState,
 } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -10,8 +11,23 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/signup.css';
 import background from '../../img/login-background.jpg';
+import { Context } from '../store/appContext';
+import { useNavigate } from "react-router-dom"
 
 export const SignUp = () => {
+  const {store, actions} = useContext(Context);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  
+  const token = sessionStorage.getItem("token")
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    actions.signup(email, password);
+    navigate("/login");
+  };
+
   const [
     showPassword,
     setShowPassword,
@@ -24,6 +40,8 @@ export const SignUp = () => {
       );
     };
 
+  if(store.token && store.token != "" && store.token != undefined) navigate("/")
+
   return (
     <div
       className="background"
@@ -33,7 +51,12 @@ export const SignUp = () => {
         height: '100vh',
       }}
     >
-      <Form>
+      <Form.Label className='signup-title' style={{fontSize: "50px", display: "flex", justifyContent: "center"}}>Sign Up Form</Form.Label>
+        {store.token && store.token != "" && store.token != undefined ? (
+            console.log("You are now signed up!" + store.token)
+        ) : (
+          <div>
+             <Form onSubmit={handleClick}>
         <Form.Group
           className="mt-1"
           controlId="formBasicEmail"
@@ -42,8 +65,10 @@ export const SignUp = () => {
             Email address
           </Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
+            type="email" 
+            placeholder="Enter email" 
+            value={email} 
+            onChange={e => setEmail(e.target.value)}
           />
           <Form.Text className="text-muted"></Form.Text>
         </Form.Group>
@@ -62,12 +87,10 @@ export const SignUp = () => {
             }}
           >
             <Form.Control
-              type={
-                showPassword
-                  ? 'text'
-                  : 'password'
-              }
+              type={ showPassword ? 'text' : 'password'}
               placeholder="Enter password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <FontAwesomeIcon
               className="eye"
@@ -100,6 +123,8 @@ export const SignUp = () => {
           Submit
         </Button>
       </Form>
+          </div>
+        )}
     </div>
   );
 };
