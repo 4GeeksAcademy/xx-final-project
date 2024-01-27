@@ -46,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try{
-					const resp = await fetch("https://upgraded-guacamole-76r4746xrpqhppw4-3001.app.github.dev/api/signup", opts)
+					const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/signup", opts)
 					if(resp.status !== 200){
 						alert("There has been some error");
 						return false;
@@ -74,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try{
-					const resp = await fetch("https://upgraded-guacamole-76r4746xrpqhppw4-3001.app.github.dev/api/token", opts)
+					const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/token", opts)
 					if(resp.status !== 200){
 						alert("There has been some error");
 						return false;
@@ -97,7 +97,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Authorization": "Bearer " + store.token
 					}
 				};
-				fetch("https://upgraded-guacamole-76r4746xrpqhppw4-3001.app.github.dev/api/hello", opts)
+				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/hello", opts)
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
