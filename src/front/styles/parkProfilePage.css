@@ -18,7 +18,8 @@
 /* Park Image CSS */
 
 .parkImage {
-  width: 95%;
+  width: 100%;
+  max-width: 95%;
   height: 87%;
   margin: 30px 0 10px 30px;
   border-radius: 25px;
