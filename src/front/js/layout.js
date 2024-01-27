@@ -8,14 +8,13 @@ import ScrollToTop from './component/scrollToTop';
 import { BackendURL } from './component/backendURL';
 
 import { Home } from './pages/home';
-import { Demo } from './pages/demo';
-import { Single } from './pages/single';
 import { SignUp } from './pages/signup';
 import injectContext from './store/appContext';
 
 import { Navbar } from './component/navbar';
 import { Footer } from './component/footer';
 import { Login } from './pages/login';
+import { UserProfilePage } from './pages/user-profile';
 
 //create your first component
 const Layout = () => {
@@ -59,17 +58,11 @@ const Layout = () => {
               }
               path="/signup"
             />
-            <Route
+             <Route
               element={
-                <Demo />
+                <UserProfilePage />
               }
-              path="/demo"
-            />
-            <Route
-              element={
-                <Single />
-              }
-              path="/single/:theid"
+              path="/profile"
             />
             <Route
               element={
