@@ -22,7 +22,8 @@ export const SignUp = () => {
   
   const token = sessionStorage.getItem("token")
   
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     actions.signup(email, password);
     navigate("/login");
   };
@@ -50,12 +51,12 @@ export const SignUp = () => {
         height: '100vh',
       }}
     >
-      <Form.Label>Sign Up Form</Form.Label>
+      <Form.Label className='signup-title' style={{fontSize: "50px", display: "flex", justifyContent: "center"}}>Sign Up Form</Form.Label>
         {store.token && store.token != "" && store.token != undefined ? (
             console.log("You are now signed up!" + store.token)
         ) : (
           <div>
-             <Form>
+             <Form onSubmit={handleClick}>
         <Form.Group
           className="mt-1"
           controlId="formBasicEmail"
@@ -118,7 +119,6 @@ export const SignUp = () => {
           className="mt-3"
           variant="primary"
           type="submit"
-          onClick={handleClick}
         >
           Submit
         </Button>

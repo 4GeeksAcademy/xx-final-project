@@ -29,7 +29,8 @@ export const Login = () => {
         setShowPassword(!showPassword);
     }
 
-    const handleClick = () => {
+    const handleClick = (e) => {
+      e.preventDefault();
       actions.login(email,password); 
       navigate ("/")
     }
@@ -40,12 +41,12 @@ export const Login = () => {
 
     return(
         <div className='background' style={{ backgroundImage: `url(${Background})`, width: "100%", height: "100vh"}}>
-          <Form.Label>Log In Form</Form.Label>
+          <Form.Label className='login-title' style={{fontSize: "50px", display: "flex", justifyContent: "center"}}>Log In Form</Form.Label>
             {store.token && store.token != "" && store.token != undefined ? (
               "You have successfully logged in" + store.token
             ) : (
               <div>
-                <Form> 
+                <Form onSubmit={handleClick}> 
                   <Form.Group className="mt-1" controlId="formBasicEmail">
                     <Form.Label> Email address </Form.Label>
                     <Form.Control 
@@ -83,7 +84,6 @@ export const Login = () => {
                       className="mt-3 submit-btn"
                       variant="primary"
                       type="submit"
-                      onClick={handleClick}
                     >
                       Login
                     </Button>
