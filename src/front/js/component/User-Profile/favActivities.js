@@ -1,14 +1,12 @@
 import React from "react";
+import addBtn from "../../../img/plus-box.svg"
 
 export const FavActivities = () => {
   return (
    <div>
-     <div className="label">
-      <div className="text-wrapper">Favorite activities:</div>
+     <h3>Favorite Activities:</h3>
+      <button>{addBtn}</button> <br />
+      Add 
     </div>
-    <div className="frame">
-        <img className="icon-park-outline" alt="Icon park outline" src="icon-park-outline-add.svg" />
-    </div>
-   </div>
   );
 };

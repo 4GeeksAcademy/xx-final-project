@@ -10,7 +10,7 @@ import {
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/signup.css';
-import background from '../../img/login-background.jpg';
+import background from "../../img/background-imgs/winter.jpg"
 import { Context } from '../store/appContext';
 import { useNavigate } from "react-router-dom"
 

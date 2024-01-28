@@ -1,24 +1,20 @@
 import React from "react";
+import Form from 'react-bootstrap/Form';
 import "../../../styles/user-profile/profileBio.css"
 
 export const ProfileBio = () => {
   return (
     <div className="frame">
-      <div className="frame-wrapper">
-        <div className="div">
-          <div className="text-wrapper-2">First Last</div>
-          <div className="text-wrapper-3">State</div>
-          <div className="text-wrapper-4">Get to know me:</div>
-          <div className="text-wrapper-5">Type something here</div>
-          <div className="text-wrapper-6">Favorite activities:</div>
-          <div className="div-wrapper">
-            <div className="div-2">
-              <img className="icon-park-outline" alt="Icon park outline" src="icon-park-outline-add.svg" />
-              {/* <NormalText divClassName="normal-text-instance" text="Add" /> */}
-            </div>
-          </div>
-        </div>
-      </div>
+      <Form>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>First & Last Name</Form.Label>
+          <Form.Control type="text" placeholder="First Last" />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Get to know me:</Form.Label>
+          <Form.Control as="textarea" placeholder="Type something about yourself here!" rows={3} />
+        </Form.Group>
+      </Form>
     </div>
   );
 };

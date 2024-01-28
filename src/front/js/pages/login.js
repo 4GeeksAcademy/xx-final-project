@@ -12,7 +12,7 @@ import React, {
   } from '@fortawesome/free-solid-svg-icons';
   import { Context } from "../store/appContext"
 
-import Background from "../../img/login-background.jpg"
+import Background from "../../img/background-imgs/road-desert.jpg"
 
 import "../../styles/login.css"
 import { useNavigate } from 'react-router-dom';
