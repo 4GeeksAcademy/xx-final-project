@@ -5,16 +5,14 @@ import ParkProfileInfo from '../component/ParkProfile/ParkProfileInfo';
 import '../../styles/parkProfilePage.css';
 import background from '../../img/login-background.jpg';
 
-export const ParkProfilePage =
-  () => {
+export const ParkProfilePage = () => {
+  
     return (
       <>
         <div
           className="background"
           style={{
-            backgroundImage: `url(${background})`,
-            width: '100%',
-            height: '100%',
+            backgroundImage: `url(${background})`
           }}
         >
           <div className="side-by-side-container">
