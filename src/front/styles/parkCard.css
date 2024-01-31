@@ -1,0 +1,51 @@
+.park-card {
+    width: 327px;
+    height: 394px;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: 15px;
+  }
+  
+  .park-card-image {
+    width: 327px;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .park-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .park-card-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .park-card-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .park-card-button {
+    /* align-self: center; */
+    font-size: 14px;
+    /* position: absolute; */
+    bottom: 10px;
+    margin: 5px;
+  }
+
+  .buttons {
+    justify-content: center;
+    display: flex;
+  }
+
+  .park-card-heart-button {
+    /* align-self: center; */
+    font-size: 14px;
+    /* position: absolute; */
+    bottom: 10px;
+    margin: 5px;
+  }
