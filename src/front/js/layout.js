@@ -42,6 +42,12 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route
+            element={
+                <Dashboard />
+              }
+              path="/"
+            />
+            <Route
               element={
                 <Login />
               }
@@ -58,12 +64,6 @@ const Layout = () => {
                 <UserProfilePage />
               }
               path="/profile"
-            />
-            <Route
-              element={
-                <Dashboard />
-              }
-              path="/dashboard"
             />
             <Route
               element={

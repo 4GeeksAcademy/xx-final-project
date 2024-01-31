@@ -29,7 +29,7 @@ const ParkCard = ({ title, text, buttonText, imageUrl, state }) => {
         </div>
         <div className='buttons'>
           <Button className="park-card-button" variant="primary">{buttonText}</Button>
-          <Button className="park-card-heart-button" variant="primary">{Heart}</Button>
+          <Button onClick={() => actions.addFavorites(data)} className="park-card-heart-button" variant="primary">{Heart}</Button>
         </div>
       </Card.Body>
     </Card>

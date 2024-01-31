@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { RegularCard } from "../regularCard";
+import { FavoritesContext } from "./createFav";
 
 export const FavParks = ({data}) => {
-    // const {store, actions} = useContext(FavoritesContext);    
+    const {store, actions} = useContext(FavoritesContext);    
     const [parkInfo, setparkInfo] = useState([]);
     const [loading, setLoading] = useState([]);
     const [error, setError] = useState([]);
@@ -48,13 +48,23 @@ export const FavParks = ({data}) => {
                 <h2>My Favorites:</h2>
             </div>
             <div>
-            {
+            {store.favorites.map(({id, fullName, iamges, descriptions, addresses}) => {
+                return (
+                    <div>
+                        <Button variant="danger" onClick={() => handleRemove(id)}>
+                            Remove from Favorites
+                        </Button>
+                    </div>
+
+                )
+            })}
+            {/* {
                 parkInfo.map(({id, fullName, description, images, addresses}) => {
                     return(
                         < RegularCard key={id} data={{id, fullName, images, description, addresses}} />
                     )
                 })
-            }
+            } */}
             </div>
         </div>
     );

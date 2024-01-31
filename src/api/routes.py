@@ -47,3 +47,4 @@ def sign_up():
     db.session.add(user)
     db.session.commit()
     return jsonify({"msg": "Success"}), 200
+

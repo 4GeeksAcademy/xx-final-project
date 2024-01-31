@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 export const FavoritesContext = React.createContext(null);
 
@@ -8,7 +8,7 @@ export const FavoritesWrapper = (props) => {
     });
     const [actions, setActions] = useState({
         addFavorites: (entity) => {
-            setStore(({favoties}) => {
+            setStore(({favorites}) => {
                 const match = favorites.find((fav) => fav.id === entity.id)
                 if (!match) {
                     return{
