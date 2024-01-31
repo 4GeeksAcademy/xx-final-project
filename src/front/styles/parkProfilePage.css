@@ -1,7 +1,7 @@
 /* Page CSS */
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .background {
   background-size: cover;
@@ -36,7 +36,7 @@ body::-webkit-scrollbar {
 /* Park Profile Card CSS */
 .parkInfo {
   width: 75%;
-  height: 30%;
+  /* height: 30%; */
   margin: 30px 30px 0 10px;
   border-radius: 25px;
 }

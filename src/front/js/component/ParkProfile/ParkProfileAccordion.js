@@ -22,11 +22,7 @@ export const ParkProfileAccordion =
               Cost
             </Accordion.Header>
             <Accordion.Body>
-              Details about
-              the costs
-              associated with
-              visiting the
-              park
+              Details about the costs associated with visiting the park
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="2">
@@ -34,9 +30,7 @@ export const ParkProfileAccordion =
               Accessibility
             </Accordion.Header>
             <Accordion.Body>
-              Details about
-              accessibility at
-              the park
+              Details about accessibility at the park
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="3">
@@ -44,9 +38,7 @@ export const ParkProfileAccordion =
               Parking
             </Accordion.Header>
             <Accordion.Body>
-              Details about
-              parking at the
-              park
+              Details about parking at the park
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="4">
@@ -54,8 +46,7 @@ export const ParkProfileAccordion =
               Topics
             </Accordion.Header>
             <Accordion.Body>
-              Details about
-              the park
+              Details about the park
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
