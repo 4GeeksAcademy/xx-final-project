@@ -2,7 +2,7 @@ import React from "react";
 import { ImportImage } from "../component/User-Profile/importImage";
 import { ProfileBio } from "../component/User-Profile/profileBio";
 import { FavActivities } from "../component/User-Profile/favActivities";
-import { AttractionCard } from "../component/User-Profile/attractionCard";
+import { FavParks } from "../component/User-Profile/fetchParks";
 import Background from "../../img/background-imgs/green-mountain.jpg"
 
 export const UserProfilePage = () => {
@@ -15,7 +15,7 @@ export const UserProfilePage = () => {
         < FavActivities />
         </div>
       </div>
-      < AttractionCard />
+      < FavParks />
     </div>
   )
 }
