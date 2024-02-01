@@ -53,7 +53,7 @@ export const FavParks = () => {
   const filteredCards = cardsData.filter(
     (park) => favorites && favorites.includes(park.id)
   );
-  // console.log(filteredCards, favorites)
+
 
   return (
     <div>
@@ -61,7 +61,7 @@ export const FavParks = () => {
       <div>
         {filteredCards &&
           filteredCards.map((park) => (
-           <RegularCard {...park} />
+           <RegularCard key={park.id} {...park} />
           ))}
       </div>
     </div>
