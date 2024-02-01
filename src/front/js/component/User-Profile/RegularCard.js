@@ -1,8 +1,12 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import Button from "react-bootstrap";
+import {Button} from "react-bootstrap";
 
-export const RegularCard = () => {
+import comingSoon from "../../../img/comingSoon.jpg"
+import { Link } from "react-router-dom";
+
+export const RegularCard = (data) => {
+  console.log(data)
 
     return (
         <Card style={{ width: "18rem", margin: "30px", display: "inline-block" }}> 

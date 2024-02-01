@@ -94,9 +94,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => console.log("Error loading message from backend", error));
 			},
 
-			addFavorite: (parkData) => {
+			addFavorite: (id) => {
 				const store = getStore();
-				const updatedFavorites = [...store.user.favorites, parkData];
+				const updatedFavorites = [...store.user.favorites, id];
 
 				setStore({
 					user: {
@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Authorization": `Bearer ${sessionStorage.getItem("token")}`
 					},
 					body: JSON.stringify({
-						park_id: parkData.id
+						park_id: id
 					})
 				};
 				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite", opts)

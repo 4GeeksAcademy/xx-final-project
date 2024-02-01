@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import Sunset from "../../../img/Sunset.jpg";
 import Heart from "../../../img/heart.png"
 import '../../../styles/parkCard.css';
+import { Context } from '../../store/appContext';
 
 const truncateText = (text, limit) => {
   const words = text.split(' ');
@@ -16,7 +17,10 @@ const truncateText = (text, limit) => {
   return text;
 };
 
-const ParkCard = ({ title, text, buttonText, imageUrl, state }) => {
+const ParkCard = ({ title, text, buttonText, imageUrl, state, id }) => {
+  const {store, actions} = useContext(Context)
+
+
   const truncatedText = truncateText(text, 10);
   return (
     <Card className="park-card">
@@ -29,7 +33,7 @@ const ParkCard = ({ title, text, buttonText, imageUrl, state }) => {
         </div>
         <div className='buttons'>
           <Button className="park-card-button" variant="primary">{buttonText}</Button>
-          <Button onClick={() => actions.addFavorites(data)} className="park-card-heart-button" variant="primary">{Heart}</Button>
+          <Button onClick={() => actions.addFavorite(id)} className="park-card-heart-button" variant="primary">{Heart}</Button>
         </div>
       </Card.Body>
     </Card>
@@ -97,6 +101,7 @@ const ParkCardList = () => {
               Heart={Heart}
               imageUrl={Sunset}
               state={park.states} // Add the 'states' property from the API response
+              id = {park.id}
             />
           </Col>
         ))}

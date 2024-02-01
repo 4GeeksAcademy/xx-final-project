@@ -28,8 +28,8 @@ export const ImportImage = () => {
   return (
     <div className="box">
       <Form>
-        <Form.Group>
-          <Form.Text>
+        <Form.Group className="all">
+          <Form.Text className="text">
             Upload Photo
           </Form.Text>
         <FontAwesomeIcon className='upload' style={{ position:'absolute' }}

@@ -1,6 +1,3 @@
-"""
-This module takes care of starting the API Server, Loading the DB and Adding the endpoints
-"""
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, FavoritePark
@@ -9,6 +6,7 @@ from flask_cors import CORS
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from flask_jwt_extended import decode_token
 
 api = Blueprint('api', __name__)
 
@@ -49,20 +47,77 @@ def sign_up():
     return jsonify({"msg": "Success"}), 200
 
 @api.route('/favorite', methods=['POST'])
+@jwt_required()
 def add_fav():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
 
-    token = request.json.get("token")
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
 
-    # decode the token with jwt
-    # use decode to get the email
-    # then use email to get id from user database
-    # save into correct user_id spot
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_id = user.id
 
     park = request.json.get("park_id", None)
     
-    if FavoritePark.query.filter(FavoritePark.user_id == user and FavoritePark.park_id == park).first() :
+    if FavoritePark.query.filter(FavoritePark.user_id == user_id, FavoritePark.park_id == park).first() :
         return jsonify({"msg": "Favorite already saved"}), 400
 
-    db.session.add(FavoritePark(user_id = user, park_id = park))
+    db.session.add(FavoritePark(user_id = user_id, park_id = park))
     db.session.commit()
     return jsonify({"msg": "Success"}), 200
+
+@api.route('/favorites', methods=['GET'])
+@jwt_required()
+def get_fav():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_id = user.id
+    favorites = [fav[0] for fav in db.session.query(FavoritePark.park_id).filter(FavoritePark.user_id == user_id).all()]
+
+    return jsonify({"favorites": favorites}), 200
