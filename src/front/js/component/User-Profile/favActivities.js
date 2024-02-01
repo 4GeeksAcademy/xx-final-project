@@ -1,6 +1,13 @@
 import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPlus
+} from '@fortawesome/free-solid-svg-icons';
+
+import "../../../styles/user-profile/favActivities.css"
+import { Form } from "react-bootstrap";
 
 export const FavActivities = () => {
   
@@ -13,10 +20,14 @@ export const FavActivities = () => {
 
   return (
    <div>
-     <h3>Favorite Activities:</h3>
-     <Button className='activity-button' variant="primary" onClick={handleShow}>
-        Add Button
-      </Button>
+     <Form>
+        <Form.Group className="name-input mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Label>Add Activities:</Form.Label>
+          <FontAwesomeIcon className='plus' style={{ position:'absolute' }}
+            icon={faPlus}
+          />
+        </Form.Group>
+      </Form>
 
       <Modal show={showModal} onHide={handleClose} size="lg">
         <Modal.Header closeButton>

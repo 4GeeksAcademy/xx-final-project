@@ -5,17 +5,23 @@ import { FavActivities } from "../component/User-Profile/favActivities";
 import { FavParks } from "../component/User-Profile/fetchParks";
 import Background from "../../img/background-imgs/green-mountain.jpg"
 
+import "../../styles/user-profile/user-profile.css"
+
 export const UserProfilePage = () => {
   return (
-    <div style={{ backgroundImage: `url(${Background})`, width: "100%", height: "100vh"}}>
-      <div style={{display: "flex", justifyContent: "center"}}>
-        < ImportImage />
-        <div>
-        < ProfileBio />
-        < FavActivities />
+    <div className="background">
+      <div className="top-half">
+        <div className="image">
+          < ImportImage />
+        </div>
+        <div className="userinfo">
+          < ProfileBio />
+          < FavActivities />
         </div>
       </div>
-      < FavParks />
+      <div className="parkcards">
+        < FavParks />
+      </div>
     </div>
   )
 }

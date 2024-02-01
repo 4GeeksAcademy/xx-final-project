@@ -19,13 +19,9 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class Park(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-
 class FavoritePark(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    park_id = db.Column(db.Integer, db.ForeignKey('park.id'), nullable=False)
+    park_id = db.Column(db.String(100), nullable=False)
 
     user = db.relationship('User', backref=db.backref('favorite_parks', lazy=True))
-    park = db.relationship('Park', backref=db.backref('users_favorited', lazy=True))

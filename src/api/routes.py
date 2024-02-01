@@ -3,7 +3,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, FavoritePark
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
@@ -48,3 +48,21 @@ def sign_up():
     db.session.commit()
     return jsonify({"msg": "Success"}), 200
 
+@api.route('/favorite', methods=['POST'])
+def add_fav():
+
+    token = request.json.get("token")
+
+    # decode the token with jwt
+    # use decode to get the email
+    # then use email to get id from user database
+    # save into correct user_id spot
+
+    park = request.json.get("park_id", None)
+    
+    if FavoritePark.query.filter(FavoritePark.user_id == user and FavoritePark.park_id == park).first() :
+        return jsonify({"msg": "Favorite already saved"}), 400
+
+    db.session.add(FavoritePark(user_id = user, park_id = park))
+    db.session.commit()
+    return jsonify({"msg": "Success"}), 200

@@ -104,6 +104,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 						favorites: updatedFavorites
 					}
 				});
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${sessionStorage.getItem("token")}`
+					},
+					body: JSON.stringify({
+						park_id: parkData.id
+					})
+				};
+				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite", opts)
+					.then(resp => resp.json())
+					.then(data => setStore({ message: data.message }))
+					.catch(error => console.log("Error", error));
 			},
 
 			removeFavorite: (parkId) => {
