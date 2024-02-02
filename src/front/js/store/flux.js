@@ -98,12 +98,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				const updatedFavorites = [...store.user.favorites, id];
 
+				// update to where it doesn't log user out after favoriting something
 				setStore({
 					user: {
 						...store.user,
 						favorites: updatedFavorites
 					}
 				});
+				// this part ^
+				
 				const opts = {
 					method: "POST",
 					headers: {
@@ -116,7 +119,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				};
 				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite", opts)
 					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error", error));
 			},
 

@@ -5,8 +5,7 @@ import { Button } from "react-bootstrap";
 import comingSoon from "../../../img/comingSoon.jpg";
 import { Link } from "react-router-dom";
 
-export const RegularCard = (data) => {
-
+export const RegularCard = ({data, deleteFavorites}) => {
   return (
     <Card style={{ width: "18rem", margin: "30px", display: "inline-block" }}>
       <Card.Img
@@ -27,6 +26,11 @@ export const RegularCard = (data) => {
             Learn More!
           </Button>
         </Link>
+          <Button 
+            variant="primary"
+            onClick={() => deleteFavorites(data.id)}>
+            Heart Symbol
+          </Button>
       </Card.Body>
     </Card>
   );

@@ -5,8 +5,8 @@ import { Context } from "../../store/appContext.js";
 
 export const FavParks = () => {
   const { store, actions } = useContext(Context);
-  const userFavorites = store.user.favorites;
   const [cardsData, setCardsData] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
   const [favorites, setFavorites] = useState([]);
 
   const fetchData = async () => {
@@ -30,6 +30,7 @@ export const FavParks = () => {
     const opts = {
       method: "GET",
       headers: {
+        Referer: "test",
         "Content-Type": "application/json",
         Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
@@ -43,25 +44,61 @@ export const FavParks = () => {
       .catch((error) => console.log("Error", error));
   };
 
+  const deleteFavorites = async (park_id) => {
+    const opts = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    };
+
+    try {
+      const response = await fetch(
+        `https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite/${park_id}`,
+        opts
+      );
+      if (!response.ok) {
+        throw new Error("HTTP error! Status: ${response.status}");
+      }
+
+      setFavorites((prevFavorites) => {
+        const updatedFavorites = prevFavorites.filter(
+          (fav) => fav !== park_id
+        );
+        return updatedFavorites;
+      });
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined) {
-      fetchData();
+      setFilteredCards(
+        cardsData.filter((park) => favorites && favorites.includes(park.id))
+      );
+    }
+  }, [cardsData, store.token, favorites]);
+
+  useEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined) {
       fetchFavorites();
+      fetchData();
     }
   }, [store.token]);
-
-  const filteredCards = cardsData.filter(
-    (park) => favorites && favorites.includes(park.id)
-  );
-
 
   return (
     <div>
       <h2>My Favorite Parks: </h2>
       <div>
         {filteredCards &&
-          filteredCards.map((park) => (
-           <RegularCard key={park.id} {...park} />
+          filteredCards.map((favorite) => (
+            <RegularCard
+              key={favorite.park_id}
+              data={favorite}
+              deleteFavorites={deleteFavorites}
+            />
           ))}
       </div>
     </div>

@@ -7,12 +7,6 @@ import "../styles/index.css";
 
 //import your own components
 import Layout from "./layout";
-import { FavoritesWrapper } from "./component/User-Profile/createFav"
 
 //render your react application
-ReactDOM.render(
-    <FavoritesWrapper>
-        <Layout />
-    </FavoritesWrapper>
-, 
-document.querySelector("#app"));
+ReactDOM.render(<Layout />, document.querySelector("#app"));

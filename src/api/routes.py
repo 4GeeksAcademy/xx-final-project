@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, FavoritePark
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
+from sqlalchemy import and_
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -121,3 +122,44 @@ def get_fav():
     favorites = [fav[0] for fav in db.session.query(FavoritePark.park_id).filter(FavoritePark.user_id == user_id).all()]
 
     return jsonify({"favorites": favorites}), 200
+
+@api.route('/favorite/<string:park_id>', methods=['DELETE'])
+@jwt_required()
+def del_fav(park_id):
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_id = user.id
+    
+    delete_fav = FavoritePark.query.filter(and_(FavoritePark.user_id == user_id, FavoritePark.park_id == park_id)).first()
+
+    if not delete_fav:
+        return jsonify({"msg": "Favorite not found"}), 404
+
+    db.session.delete(delete_fav)
+    db.session.commit()
+    return jsonify({"msg": "Success"}), 200
