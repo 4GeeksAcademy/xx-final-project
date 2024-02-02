@@ -62,7 +62,7 @@ const Layout = () => {
               element={
                 <ParkProfilePage />
               }
-              path="/parkprofilepage"
+              path="/parkprofilepage/:theid"
             />
             <Route
               element={

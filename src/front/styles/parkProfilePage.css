@@ -12,7 +12,7 @@
 .side-by-side-container {
   display: flex;
   margin: 0 20px 20px 20px;
-  padding: 100px;
+  /* padding: 50px; */
   padding-bottom: 30px;
   padding-top: 20px;
 }
@@ -28,16 +28,16 @@
 .parkImage {
   width: 100%;
   max-width: 95%;
-  height: 87%;
-  margin: 30px 0 10px 30px;
-  border-radius: 25px;
+  height: 550px;
+  margin: 30px 10px 10px 30px;
+  border-radius: 35x;
 }
 
 /* Park Profile Card CSS */
 .parkInfo {
   width: 75%;
   /* height: 30%; */
-  margin: 30px 30px 0 10px;
+  margin: 30px 20px 0 10px;
   border-radius: 25px;
 }
 
