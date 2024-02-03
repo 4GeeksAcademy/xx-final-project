@@ -16,7 +16,7 @@ import { Navbar } from './component/navbar';
 import { Footer } from './component/footer';
 import { Login } from './pages/login';
 import { UserProfilePage } from './pages/user-profile';
-import { Dashboard } from './pages/dashboard';
+// import { Dashboard } from './pages/dashboard';
 
 //create your first component
 const Layout = () => {
@@ -73,7 +73,6 @@ const Layout = () => {
               path="/parkprofilepage/:theid"
             />
             <Route
-             <Route
               element={
                 <UserProfilePage />
               }
