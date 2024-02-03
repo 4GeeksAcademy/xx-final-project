@@ -2,17 +2,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token:null,
+			parkList: [],
 			message: null,
 			user: {
 				favorites: []
 			},
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
 
+			getParkInfo: async () => {
+				let opt = {
+				  method: 'GET',
+				  headers: {"x-api-key": process.env.PARK_SERVICE_API_KEY},
+				}
+				try {
+				  const response = await fetch(process.env.PARK_SERVICE_URL,opt);
+		
+				  if (!response.ok) {
+					throw new Error(`HTTP error! Status: ${response.status}`);
+				  }
+		
+				  const data = await response.json();
+				  setStore({ parkList: data.data });
+				} catch (error) {
+				  console.log(error.message);
+				}
+			  },
+			
 			syncTokenFromSessionStore: () => {
 				const token = sessionStorage.getItem("token");
 				console.log("Application just loaded, syncing the session storage token")
