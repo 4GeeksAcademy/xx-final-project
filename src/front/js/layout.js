@@ -7,8 +7,9 @@ import {
 import ScrollToTop from './component/scrollToTop';
 import { BackendURL } from './component/backendURL';
 
-// import { Home } from './pages/home';
+import { Home } from './pages/home';
 import { SignUp } from './pages/signup';
+import { ParkProfilePage } from './pages/ParkProfilePage';
 import injectContext from './store/appContext';
 
 import { Navbar } from './component/navbar';
@@ -40,6 +41,12 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
+          <Route
+              element={
+                <Home />
+              }
+              path="/"
+            />
             <Route
               element={
                 <Login />
@@ -54,10 +61,16 @@ const Layout = () => {
             />
             <Route
               element={
+                <ParkProfilePage />
+              }
+              path="/parkprofilepage/:theid"
+            />
+            {/* <Route
+              element={
                 <Dashboard />
               }
-              path="/dashboard"
-            />
+              path="/"
+            /> */}
             <Route
               element={
                 <h1>
