@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'react-bootstrap/Image';
-import Dashboardimage1 from "../../../img/Dashboardimage1.jpg";
+import Dashboardimage1 from "../../../img/Arianna's pngs/Dashboardimage1.jpg";
 
 const DashboardImg = () => {
   const [searchQuery, setSearchQuery] = useState('');

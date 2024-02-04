@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Sunset from "../../../img/Sunset.jpg";
-import Heart from "../../../img/heart.png"
+import Sunset from "../../../img/Arianna's pngs/Sunset.jpg";
+import Heart from "../../../img/Arianna's pngs/heart.png"
 import '../../../styles/parkCard.css';
 import { Context } from '../../store/appContext';
 
