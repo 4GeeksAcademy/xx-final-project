@@ -12,7 +12,7 @@ import React, {
   } from '@fortawesome/free-solid-svg-icons';
   import { Context } from "../store/appContext"
 
-import Background from "../../img/login-background.jpg"
+import Background from "../../img/background-imgs/road-desert.jpg"
 
 import "../../styles/login.css"
 import { useNavigate } from 'react-router-dom';
@@ -29,11 +29,20 @@ export const Login = () => {
         setShowPassword(!showPassword);
     }
 
-    const handleClick = (e) => {
+    const handleValidation = () => {
+      if (!email || !password) {
+        alert("Please fill in all fields");
+        return false;
+      } return true;
+    };
+  
+    const handleLogin = (e) => {
       e.preventDefault();
-      actions.login(email,password); 
-      navigate ("/")
-    }
+      if (handleValidation()){
+        actions.login(email, password);
+        navigate("/")
+      }
+    };
 
     useEffect(() => {
       if(store.token && store.token != "" && store.token != undefined) navigate("/")
@@ -46,7 +55,7 @@ export const Login = () => {
               "You have successfully logged in" + store.token
             ) : (
               <div>
-                <Form onSubmit={handleClick}> 
+                <Form onSubmit={handleLogin}> 
                   <Form.Group className="mt-1" controlId="formBasicEmail">
                     <Form.Label> Email address </Form.Label>
                     <Form.Control 

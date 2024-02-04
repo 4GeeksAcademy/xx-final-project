@@ -7,14 +7,16 @@ import {
 import ScrollToTop from './component/scrollToTop';
 import { BackendURL } from './component/backendURL';
 
-// import { Home } from './pages/home';
+import { Home } from './pages/home';
 import { SignUp } from './pages/signup';
+import { ParkProfilePage } from './pages/ParkProfilePage';
 import injectContext from './store/appContext';
 
 import { Navbar } from './component/navbar';
 import { Footer } from './component/footer';
 import { Login } from './pages/login';
-import { Dashboard } from './pages/dashboard';
+import { UserProfilePage } from './pages/user-profile';
+// import { Dashboard } from './pages/dashboard';
 
 //create your first component
 const Layout = () => {
@@ -40,6 +42,18 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
+            {/* <Route
+            element={
+                <Dashboard />
+              }
+              path="/"
+            /> */}
+          <Route
+              element={
+                <Home />
+              }
+              path="/"
+            />
             <Route
               element={
                 <Login />
@@ -54,9 +68,15 @@ const Layout = () => {
             />
             <Route
               element={
-                <Dashboard />
+                <ParkProfilePage />
               }
-              path="/dashboard"
+              path="/parkprofilepage/:theid"
+            />
+            <Route
+              element={
+                <UserProfilePage />
+              }
+              path="/profile"
             />
             <Route
               element={

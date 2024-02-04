@@ -15,19 +15,15 @@ const injectContext = PassedComponent => {
 				getActions: () => state.actions,
 				setStore: updatedStore =>
 					setState({
-						store: Object.assign(state.store, updatedStore),
+						...state,
+						store: {...state.store, ...updatedStore},
 						actions: { ...state.actions }
 					})
 			})
 		);
 
 		useEffect(() => {
-			/**
-			 * EDIT THIS!
-			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
-			 * you should do your ajax requests or fetch api requests here. Do not use setState() to save data in the
-			 * store, instead use actions, like this:
-			 **/
+			state.actions.getParkInfo();
 			state.actions.syncTokenFromSessionStore(); // <---- calling this function from the flux.js actions
 		}, []);
 
