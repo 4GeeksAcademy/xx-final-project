@@ -79,7 +79,7 @@ const ParkCardList = () => {
 
   return (
     <Container>
-      <div style={{ marginBottom: '20px' }}>
+      <div className='search-bar d-flex justify-content-center' style={{ marginBottom:'20px' }}>
         <input
           type="text"
           placeholder="Search by Park Name"
