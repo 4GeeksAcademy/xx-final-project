@@ -4,7 +4,7 @@ import ParkProfileAccordion from '../component/ParkProfile/ParkProfileAccordion'
 import ParkProfileImage from '../component/ParkProfile/ParkProfileImage';
 import ParkProfileInfo from '../component/ParkProfile/ParkProfileInfo';
 import '../../styles/parkProfilePage.css';
-import background from '../../img/login-background.jpg';
+import background from '../../img/background-imgs/cabin-sunset.jpg';
 import { useParams } from 'react-router-dom';
 
 export const ParkProfilePage = () => {

@@ -4,6 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token:null,
 			parkList: [],
 			message: null,
+			user: {
+				favorites: []
+			},
 		},
 		actions: {
 
@@ -50,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try{
-					const resp = await fetch("https://legendary-barnacle-9rj7rvr4jpqcxpqv-3001.app.github.dev/api/signup", opts)
+					const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/signup", opts)
 					if(resp.status !== 200){
 						alert("There has been some error");
 						return false;
@@ -78,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try{
-					const resp = await fetch("hhttps://legendary-barnacle-9rj7rvr4jpqcxpqv-3001.app.github.dev/api/token", opts)
+					const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/token", opts)
 					if(resp.status !== 200){
 						alert("There has been some error");
 						return false;
@@ -101,10 +104,50 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Authorization": "Bearer " + store.token
 					}
 				};
-				fetch("https://legendary-barnacle-9rj7rvr4jpqcxpqv-3001.app.github.dev/api/hello", opts)
+				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/hello", opts)
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
+			},
+
+			addFavorite: (id) => {
+				const store = getStore();
+				const updatedFavorites = [...store.user.favorites, id];
+
+				// update to where it doesn't log user out after favoriting something
+				setStore({
+					user: {
+						...store.user,
+						favorites: updatedFavorites
+					}
+				});
+				// this part ^
+				
+				const opts = {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						"Authorization": `Bearer ${sessionStorage.getItem("token")}`
+					},
+					body: JSON.stringify({
+						park_id: id
+					})
+				};
+				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite", opts)
+					.then(resp => resp.json())
+					.catch(error => console.log("Error", error));
+			},
+
+			removeFavorite: (parkId) => {
+				const store = getStore();
+				const updatedFavorites = store.user.favorites.filter(park => park.id !== parkId);
+
+				setStore({
+					user: {
+						...store.user,
+						favorites: updatedFavorites
+					}
+				});
 			},
 		}
 	};

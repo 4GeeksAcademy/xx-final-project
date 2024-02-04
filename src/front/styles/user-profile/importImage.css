@@ -1,0 +1,13 @@
+.text{
+    display: flex;
+    text-align: center;
+}
+
+.upload{
+    width: 125px;
+    height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(171, 171, 171, 0.518);
+}

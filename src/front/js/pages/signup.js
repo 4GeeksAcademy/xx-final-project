@@ -10,7 +10,7 @@ import {
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/signup.css';
-import background from '../../img/login-background.jpg';
+import background from "../../img/background-imgs/winter.jpg"
 import { Context } from '../store/appContext';
 import { useNavigate } from "react-router-dom"
 
@@ -22,10 +22,19 @@ export const SignUp = () => {
   
   const token = sessionStorage.getItem("token")
   
-  const handleClick = (e) => {
+  const handleValidation = () => {
+    if (!email || !password) {
+      alert("Please fill in all fields");
+      return false;
+    } return true;
+  };
+
+  const handleSignUp = (e) => {
     e.preventDefault();
-    actions.signup(email, password);
-    navigate("/login");
+    if (handleValidation()){
+      actions.signup(email, password);
+      navigate("/login")
+    }
   };
 
   const [
@@ -56,7 +65,7 @@ export const SignUp = () => {
             console.log("You are now signed up!" + store.token)
         ) : (
           <div>
-             <Form onSubmit={handleClick}>
+             <Form onSubmit={handleSignUp}>
         <Form.Group
           className="mt-1"
           controlId="formBasicEmail"
