@@ -20,7 +20,7 @@ export const ParkProfilePage = () => {
           }}
         >
           <div className="side-by-side-container">
-            <ParkProfileImage parkName={park.fullName}/>
+            <ParkProfileImage />
             <ParkProfileInfo park={park}/>
           </div>
           <ParkProfileAccordion />

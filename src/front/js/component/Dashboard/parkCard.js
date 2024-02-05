@@ -4,8 +4,8 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Sunset from "../../../img/Sunset.jpg";
-import Heart from "../../../img/heart.png"
+import Sunset from "../../../img/Arianna's pngs/Sunset.jpg";
+import Heart from "../../../img/Arianna's pngs/heart.png"
 import '../../../styles/parkCard.css';
 import { Context } from '../../store/appContext';
 
@@ -42,8 +42,6 @@ const ParkCard = ({ title, text, buttonText, imageUrl, state, id }) => {
 
 const ParkCardList = () => {
   const [cardsData, setCardsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   const apiKey = '512wN5Ol0eTdyS4E6KexHiCdDezf6hpcCbbsnPcn';
@@ -68,8 +66,6 @@ const ParkCardList = () => {
       setCardsData(data.data);
       setLoading(false);
     } catch (error) {
-      setError(error.message);
-      setLoading(false);
     }
   };
 
