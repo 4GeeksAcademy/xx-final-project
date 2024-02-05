@@ -10,12 +10,13 @@ import { BackendURL } from './component/backendURL';
 import { Home } from './pages/home';
 import { SignUp } from './pages/signup';
 import { ParkProfilePage } from './pages/ParkProfilePage';
+import { ContactUsPage } from './pages/ContactUsPage';
 import injectContext from './store/appContext';
 
 import { Navbar } from './component/navbar';
 import { Footer } from './component/footer';
 import { Login } from './pages/login';
-import { Dashboard } from './pages/dashboard';
+// import { Dashboard } from './pages/dashboard';
 
 //create your first component
 const Layout = () => {
@@ -64,6 +65,12 @@ const Layout = () => {
                 <ParkProfilePage />
               }
               path="/parkprofilepage/:theid"
+            />
+            <Route
+              element={
+                <ContactUsPage />
+              }
+              path="/contactuspage"
             />
             {/* <Route
               element={

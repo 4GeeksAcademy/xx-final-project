@@ -180,14 +180,12 @@ export const Login = () => {
             <div className="buttonContainer">
               <Button
                 className="mt-3 submit-btn"
-                // variant="primary"
                 type="submit"
               >
                 Login
               </Button>
               <Button
                 className="mt-3 submit-btn"
-                // variant="primary"
               >
                 Forgot
                 Password?
