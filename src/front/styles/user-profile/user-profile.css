@@ -1,11 +1,12 @@
 .background{
     background-color:rgba(246, 247, 255, 0.981);
 }
-.image{
-    display: flex;
-    align-items: center;
-}
 
 .userinfo{
     background-color: white;
+    
+}
+
+.bio {
+    display: inline-block;
 }

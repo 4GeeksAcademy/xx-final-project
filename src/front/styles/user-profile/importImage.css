@@ -1,6 +1,10 @@
-.text{
+.all{
+    width: 500px;
+    height: 500px;
     display: flex;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(171, 171, 171, 0.518);
 }
 
 .upload{
@@ -10,4 +14,9 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(171, 171, 171, 0.518);
+}
+
+.text{
+    margin-bottom: 200px;
+    font-size: 2rem;
 }
