@@ -10,17 +10,13 @@ export const UserProfilePage = () => {
   return (
     <div className="background">
       <div className="grid">
-        <div className="image">
-          <ImportImage />
-        </div>
         <div className="userinfo">
-          <div className="bio">
-            <ProfileBio />
-          </div>
+          <ImportImage />
+          <ProfileBio />
+        </div>
           <div className="activity">
             <FavActivities />
           </div>
-        </div>
       </div>
       <div className="parkcards">
         <FavParks />

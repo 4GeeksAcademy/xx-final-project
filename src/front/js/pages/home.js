@@ -4,7 +4,7 @@ import "../../styles/home.css";
 import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
 
-export const Home = (id) => {
+export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
@@ -24,7 +24,7 @@ export const Home = (id) => {
                 </Link>
                 <button
                   className="btn btn-primary"
-                  onClick={() => actions.addFavorite(id)}
+                  onClick={() => actions.addFavorite(park.id)}
                   style={{ margin: "5px" }}
                 >
                   Heart Symbol

@@ -4,7 +4,7 @@
 
 .userinfo{
     background-color: white;
-    
+    display: inline-block;
 }
 
 .bio {
