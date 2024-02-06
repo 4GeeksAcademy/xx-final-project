@@ -17,6 +17,8 @@ import Background from '../../img/login-background.jpg';
 import '../../styles/login.css';
 import { useNavigate } from 'react-router-dom';
 
+import GlassmorphismContainer from '../component/GlassmorphismContainer';
+
 export const Login = () => {
   const { store, actions } =
     useContext(Context);
@@ -87,6 +89,7 @@ export const Login = () => {
         'You have successfully logged in' +
         store.token
       ) : (
+        <GlassmorphismContainer>
         <div className="formContainer">
           <Form
             onSubmit={
@@ -193,6 +196,7 @@ export const Login = () => {
             </div>
           </Form>
         </div>
+        </GlassmorphismContainer>
       )}
     </div>
   );

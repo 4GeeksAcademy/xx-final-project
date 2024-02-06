@@ -51,18 +51,23 @@ export const SignUp = () => {
         height: '100vh',
       }}
     >
-      <Form.Label className='signup-title' style={{fontSize: "50px", display: "flex", justifyContent: "center"}}>Sign Up Form</Form.Label>
+      <Form.Label className='signup-title' style={{fontSize: "50px", display: "flex", justifyContent: "center"}}></Form.Label>
         {store.token && store.token != "" && store.token != undefined ? (
             console.log("You are now signed up!" + store.token)
         ) : (
-          <div>
+          <div className="formContainer">
              <Form onSubmit={handleClick}>
+             <h4>Sign up</h4>
+            <h6>
+              Welcome to SIGHT
+              SEEKER
+            </h6>
         <Form.Group
           className="mt-1"
           controlId="formBasicEmail"
         >
           <Form.Label>
-            Email address
+            Email
           </Form.Label>
           <Form.Control
             type="email" 
@@ -114,7 +119,7 @@ export const SignUp = () => {
             anyone else.
           </Form.Text>
         </Form.Group>
-
+        <div className="buttonContainer">
         <Button
           className="mt-3"
           variant="primary"
@@ -122,6 +127,7 @@ export const SignUp = () => {
         >
           Submit
         </Button>
+        </div>
       </Form>
           </div>
         )}
