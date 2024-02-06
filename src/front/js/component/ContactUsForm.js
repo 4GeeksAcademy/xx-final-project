@@ -7,7 +7,6 @@ function ContactUsForm({ onSubmit }) {
 
   const [formData, setFormData] = useState({
     // Your form fields and initial values
-    name: "",
     email: "",
     message: ""
   });
@@ -21,6 +20,7 @@ function ContactUsForm({ onSubmit }) {
     e.preventDefault();
     // Pass form data to parent component
     onSubmit(formData);
+    setFormData({ email: "", message: "" })
   };
 
   return (
@@ -29,9 +29,9 @@ function ContactUsForm({ onSubmit }) {
     <h4>Contact Us</h4>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="name@example.com" />
+        <Form.Control type="email" placeholder="name@example.com" value={formData.email}/>
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" value={formData.message}>
         <Form.Label>Your message</Form.Label>
         <Form.Control as="textarea" rows={3} />
       </Form.Group>

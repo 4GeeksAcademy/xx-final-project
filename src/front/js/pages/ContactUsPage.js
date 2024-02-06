@@ -16,11 +16,12 @@ export const ContactUsPage = () => {
         setFormData(data);
         // Show the modal
         handleShow();
+        setFormData({});
         
     };
 
     console.log("Show modal:", showModal);
-    
+
     return (
         <>
             <div
