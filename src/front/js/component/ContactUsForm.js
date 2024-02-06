@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../../styles/contactus.css';
 
-function ContactUsForm() {
+function ContactUsForm({ onSubmit }) {
+
+  const [formData, setFormData] = useState({
+    // Your form fields and initial values
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Pass form data to parent component
+    onSubmit(formData);
+  };
+
   return (
     <div className='contactUs'>
-    <Form className="formContainer">
+    <Form className="formContainer" onSubmit={handleSubmit}>
     <h4>Contact Us</h4>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Email address</Form.Label>

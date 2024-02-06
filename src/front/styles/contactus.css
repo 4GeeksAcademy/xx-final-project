@@ -11,3 +11,7 @@
     justify-content: center;
     text-align: center;
   }
+
+.form-control {
+    max-height: 173px;
+}
