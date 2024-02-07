@@ -4,7 +4,6 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Sunset from "../../../img/Arianna's pngs/Sunset.jpg";
 import Heart from "../../../img/Arianna's pngs/heart.png";
 import "../../../styles/parkCard.css";
 import { Context } from "../../store/appContext";
@@ -52,7 +51,6 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
   const [cardsData, setCardsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const apiKey = "512wN5Ol0eTdyS4E6KexHiCdDezf6hpcCbbsnPcn";
   const apiUrl = "https://developer.nps.gov/api/v1/parks";
@@ -92,15 +90,8 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
   );
 
   return (
+    <>
     <Container>
-      <div style={{ marginBottom: '20px' }}>
-        <input
-          type="text"
-          placeholder="Search by Park Name"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
       <Row>
         {filteredCards.map((park, index) => (
           <Col key={index} xs={12} md={3}>
@@ -109,7 +100,7 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
               text={park.description}
               buttonText="Learn More"
               Heart={Heart}
-              imageUrl={Sunset}
+              imageUrl={park.images[0].url}
               state={park.states} // Add the 'states' property from the API response
               id = {park.id}
               onActivitySelect={selectedActivity} // Pass the onActivitySelect function to ParkCard
@@ -118,6 +109,7 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
         ))}
       </Row>
     </Container>
+    </>
   );
 };
 

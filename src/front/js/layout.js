@@ -47,13 +47,13 @@ const Layout = () => {
                 <Dashboard />
               }
               path="/"
-            /> 
+            />
           {/* <Route
               element={
                 <Home />
               }
               path="/"
-            />  */}
+            /> */}
             <Route
               element={
                 <Login />
