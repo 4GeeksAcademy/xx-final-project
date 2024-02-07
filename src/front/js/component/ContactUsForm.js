@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -6,7 +7,6 @@ import '../../styles/contactus.css';
 function ContactUsForm({ onSubmit }) {
 
   const [formData, setFormData] = useState({
-    // Your form fields and initial values
     email: "",
     message: ""
   });
@@ -29,11 +29,23 @@ function ContactUsForm({ onSubmit }) {
     <h4>Contact Us</h4>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="name@example.com" value={formData.email}/>
+        <Form.Control 
+          type="email" 
+          placeholder="name@example.com" 
+          name="email" 
+          value={formData.email}
+          onChange={handleChange}
+        />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" value={formData.message}>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
         <Form.Label>Your message</Form.Label>
-        <Form.Control as="textarea" rows={3} />
+        <Form.Control 
+          as="textarea" 
+          rows={6} 
+          name="message" 
+          value={formData.message}
+          onChange={handleChange}
+        />
       </Form.Group>
       <div className="contactButtonContainer">
       <Button
