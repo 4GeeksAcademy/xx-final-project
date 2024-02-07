@@ -4,9 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       parkList: [],
       message: "test",
-      user: {
         favorites: [],
-      },
     },
 
     actions: {
@@ -114,15 +112,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       addFavorite: (id) => {
         const store = getStore();
-        const updatedFavorites = [...store.user.favorites, id];
+        store.favorites.push(id)
+        setStore(store)
 
 				// update to where it doesn't log user out after favoriting something
-				setStore({
-					user: {
-						...store.user,
-						favorites: updatedFavorites
-					}
-				});
+				// setStore({
+				// 	user: {
+				// 		...store.user,
+				// 		favorites: updatedFavorites
+				// 	}
+				// });
 				// this part ^
 				
 				const opts = {
