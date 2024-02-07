@@ -1,47 +1,62 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPlus
-} from '@fortawesome/free-solid-svg-icons';
-
 import "../../../styles/user-profile/favActivities.css"
-import { Form } from "react-bootstrap";
 
-export const FavActivities = () => {
-  
+export const FavActivities = ({ onActivitySelect }) => {
   const [showModal, setShowModal] = useState(false);
+  const [activities, setActivities] = useState([]);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
-  const buttons = Array.from({ length: 40 }, (_, index) => `Button ${index + 1}`);
+  useEffect(() => {
+    // Fetch data from the API
+    fetch(`https://developer.nps.gov/api/v1/parks?api_key=512wN5Ol0eTdyS4E6KexHiCdDezf6hpcCbbsnPcn`)
+      .then(response => response.json())
+      .then(data => {
+        // Extract activities from all parks
+        const parkActivities = data.data.map(park => park.activities || []).flat();
+
+        // Remove duplicate activities based on id
+        const uniqueActivities = Array.from(new Set(parkActivities.map(activity => activity.id)))
+          .map(id => parkActivities.find(activity => activity.id === id));
+
+        setActivities(uniqueActivities);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const handleActivitySelect = (activity) => {
+    onActivitySelect(activity);
+    handleClose();
+  };
 
   return (
-   <div>
-     <Form>
-        <Form.Group className="name-input mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Add Activities:</Form.Label>
-          <FontAwesomeIcon className='plus' style={{ position:'absolute' }}
-            icon={faPlus}
-          />
-        </Form.Group>
-      </Form>
+    <div className='fav-activity'>
+    <Modal.Title>
+      Favorite Activities:
+    </Modal.Title>
+      <Button className='activity-button' variant="primary" onClick={handleShow}>
+        Add
+      </Button>
 
       <Modal show={showModal} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>What's Your Next Adventure?</Modal.Title>
+          <Modal.Title>Choose up to 5</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
-            {buttons.map((buttonText, index) => (
+            {activities.map((activity, index) => (
               <Button
                 key={index}
                 variant="secondary"
                 style={{ width: '144px', height: '144px', marginBottom: '15px' }}
+                onClick={() => handleActivitySelect(activity)}
               >
-                {buttonText}
+                {activity.name}
               </Button>
             ))}
           </div>

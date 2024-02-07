@@ -32,6 +32,9 @@ export const ProfileBio = () => {
 
   return (
     <div>
+      <Modal.Title>
+        About You:
+      </Modal.Title>
       <Button className="biobtn" onClick={handleShow}>Add Name and Bio</Button>
 
       <Modal show={showModal} onHide={handleClose} size="lg">
@@ -48,7 +51,7 @@ export const ProfileBio = () => {
                 <Form.Label>First & Last Name</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="First Last"
+                  placeholder="John Smith"
                   value={form.name}
                   onChange={(e) => setField("name", e.target.value)}
                 />

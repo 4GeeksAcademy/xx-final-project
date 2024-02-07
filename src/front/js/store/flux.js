@@ -54,8 +54,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
           body: {
-            name,
-            bio
+            "name": name,
+            "bio": bio
           }
         };
         await fetch(

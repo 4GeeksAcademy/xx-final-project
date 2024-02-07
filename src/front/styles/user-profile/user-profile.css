@@ -2,11 +2,25 @@
     background-color:rgba(246, 247, 255, 0.981);
 }
 
-.userinfo{
-    background-color: white;
-    display: inline-block;
+.grid{
+    display: flex;
+    justify-content: center;
+}
+
+.image{
+    display: flex;
+    justify-items: center;
+    align-items: center;
 }
 
 .bio {
     display: inline-block;
+}
+
+.activity{
+    background-color: white;
+    padding: 15px;
+    width: 500px;
+    height: 500px;
+    margin-left: 200px;
 }

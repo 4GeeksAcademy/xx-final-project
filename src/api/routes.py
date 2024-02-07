@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, FavoritePark
+from api.models import db, User, FavoritePark, UserInfo
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from sqlalchemy import and_
@@ -164,18 +164,85 @@ def del_fav(park_id):
     db.session.commit()
     return jsonify({"msg": "Success"}), 200
 
-# @api.route('/userinfo', methods=['POST'])
-# def set_info():
+@api.route('/userinfo', methods=['POST'])
+def set_info():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
 
-#     email = request.json.get("email", None)
-#     password = request.json.get("password", None)
-#     if email is None or password is None:
-#         return jsonify({"msg": "Bad email or password"}), 401
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
     
-#     if User.query.filter(User.email == email).first() :
-#         return jsonify({"msg": "Email already in use"}), 400
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
     
-#     user = User(email=email, password=password, is_active=True)
-#     db.session.add(user)
-#     db.session.commit()
-#     return jsonify({"msg": "Success"}), 200
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404 
+    
+    data=request.get_json()
+
+    name = data.get("name", "")
+    bio = data.get("bio", "")
+
+    user_info = UserInfo.query.filter_by(user_id=user.id).first()
+
+    if not user_info:
+        user_info = UserInfo(user_id=user.id, name=name, bio=bio)
+        db.session.add(user_info)
+    else: 
+        user_info.name = name
+        user_info.bio = bio
+
+    db.session.commit()
+    return jsonify({"msg": "Success"}), 200
+
+@api.route('/usersinfo', methods=['GET'])
+@jwt_required()
+def get_info():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    user_id = decoded_token["sub"]
+
+    user_info = UserInfo.query.filter_by(user_id=user_id).first()
+
+    if not user_info:
+        return jsonify({"msg": "User information not found"}), 404 
+    
+    user_info_data = {
+        "id": user_info.id,
+        "user_id": user_info.user_id,
+        "name": user_info.name,
+        "bio": user_info.bio
+    }
+    
+    return jsonify(user_info_data), 200
