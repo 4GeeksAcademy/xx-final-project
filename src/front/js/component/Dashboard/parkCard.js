@@ -59,6 +59,7 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
     const fetchData = async () => {
       const params = {
         api_key: apiKey,
+        // limit: 500
       };
 
       const queryParams = new URLSearchParams(params);
