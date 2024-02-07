@@ -9,8 +9,15 @@ import { useParams } from 'react-router-dom';
 
 export const ParkProfilePage = () => {
     const theId = useParams().theid
-    const {store,actions}= useContext(Context)
-    const park = store.parkList.find((item)=>item.id==theId)
+    const {store,actions}= useContext(Context);
+    const park = store.parkList.find((item)=>item.id==theId);
+
+    if (!park) {
+      return (
+        <p>Park not found</p>
+      ); // You can render an error message or redirect to a different page
+    }
+
     return (
       <>
         <div

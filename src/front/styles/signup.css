@@ -1,12 +1,53 @@
 form {
-  width: 50%;
+  width: 300px;
   margin: 0 auto;
   align-self: center;
 }
-
 .eye {
-  top: 20%;
+  top: 25%;
   left: 90%;
-  font-size: 1.25rem;
+  font-size: 1rem;
   cursor: pointer;
+}
+
+.submit-btn {
+  cursor: pointer;
+  margin: 3px;
+}
+
+.formContainer {
+  background-color: white;
+  height: 500px;
+  width: 400px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  );
+}
+
+h4 {
+  padding-top: 50px;
+  text-align: center;
+}
+
+h6 {
+  text-align: center;
+  padding-bottom: 25px;
+  font-weight: 100;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.btn {
+  border: none;
+  background: linear-gradient(to right, #ee84c5, #4e0e50);
 }
