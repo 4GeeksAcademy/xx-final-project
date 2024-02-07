@@ -23,11 +23,8 @@ const injectContext = (PassedComponent) => {
     );
 
     useEffect(() => {
-      if (state.store) {
-        state.actions
-          .getParkInfo()
-          .then(() => state.actions.syncTokenFromSessionStore());
-      }
+        state.actions.getParkInfo()
+        state.actions.syncTokenFromSessionStore();
     }, []);
 
     // The initial value for the context is not null anymore, but the current state of this component,
