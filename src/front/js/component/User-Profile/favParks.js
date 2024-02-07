@@ -36,7 +36,7 @@ export const FavParks = () => {
       },
     };
     await fetch(
-      "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorites",
+      "https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/favorites",
       opts
     )
       .then((resp) => resp.json())
@@ -55,7 +55,7 @@ export const FavParks = () => {
 
     try {
       const response = await fetch(
-        `https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite/${park_id}`,
+        `https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/favorite/${park_id}`,
         opts
       );
       if (!response.ok) {
