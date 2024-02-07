@@ -18,10 +18,10 @@ const truncateText = (text, limit) => {
   return text;
 };
 
-const ParkCard = ({ title, text, buttonText, imageUrl, state, id }) => {
-  const { store, actions } = useContext(Context);
-
+const ParkCard = ({ title, text, buttonText, imageUrl, state, id, onActivitySelect }) => {
   const truncatedText = truncateText(text, 10);
+  const {store , actions} = useContext(Context)
+
   return (
     <Card className="park-card">
       <Card.Img className="park-card-image" variant="top" src={imageUrl} />
@@ -48,45 +48,52 @@ const ParkCard = ({ title, text, buttonText, imageUrl, state, id }) => {
   );
 };
 
-const ParkCardList = () => {
+const ParkCardList = ({ searchQuery, selectedActivity }) => {
   const [cardsData, setCardsData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const apiKey = "512wN5Ol0eTdyS4E6KexHiCdDezf6hpcCbbsnPcn";
   const apiUrl = "https://developer.nps.gov/api/v1/parks";
 
-  const fetchData = async () => {
-    const params = {
-      api_key: apiKey,
-    };
+  useEffect(() => {
+    const fetchData = async () => {
+      const params = {
+        api_key: apiKey,
+      };
 
-    const queryParams = new URLSearchParams(params);
-    const fullUrl = `${apiUrl}?${queryParams}`;
+      const queryParams = new URLSearchParams(params);
+      const fullUrl = `${apiUrl}?${queryParams}`;
 
-    try {
-      const response = await fetch(fullUrl);
+      try {
+        const response = await fetch(fullUrl);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
       const data = await response.json();
       setCardsData(data.data);
       setLoading(false);
-    } catch (error) {}
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
   };
 
-  useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // Run only once when the component mounts
 
+  // Filter cards based on searchQuery and selectedActivity
   const filteredCards = cardsData.filter((park) =>
-    park.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+    park.fullName.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (!selectedActivity || park.activities.some(activity => activity.name === selectedActivity.name))
   );
 
   return (
     <Container>
-      <div style={{ marginBottom: "20px" }}>
+      <div style={{ marginBottom: '20px' }}>
         <input
           type="text"
           placeholder="Search by Park Name"
@@ -104,7 +111,8 @@ const ParkCardList = () => {
               Heart={Heart}
               imageUrl={Sunset}
               state={park.states} // Add the 'states' property from the API response
-              id={park.id}
+              id = {park.id}
+              onActivitySelect={selectedActivity} // Pass the onActivitySelect function to ParkCard
             />
           </Col>
         ))}

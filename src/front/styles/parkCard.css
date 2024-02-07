@@ -17,6 +17,11 @@
     flex-direction: column;
     justify-content: space-between;
   }
+
+  .search-bar{
+    justify-content: center;
+    align-items: center;
+  }
   
   .park-card-title {
     font-size: 16px;
