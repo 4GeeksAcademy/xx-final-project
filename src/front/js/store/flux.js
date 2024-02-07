@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       parkList: [],
       message: "test",
-        favorites: [],
+      favorites: [],
     },
 
     actions: {
@@ -24,6 +24,74 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ ...getStore(), parkList: data.data });
         } catch (error) {
           console.log(error.message);
+        }
+      },
+
+      fetchFavorites: async () => {
+        const opts = {
+          method: "GET",
+          headers: {
+            Referer: "test",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        };
+        await fetch(
+          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorites",
+          opts
+        )
+          .then((resp) => resp.json())
+          .then((data) => setStore({favorites: data.favorites}))
+          .catch((error) => console.log("Error", error));
+      },    
+
+      setInfo: async (name, bio) => {
+        const opts = {
+          method: "POST",
+          headers: {
+            Referer: "test",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+          body: {
+            name,
+            bio
+          }
+        };
+        await fetch(
+          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/userinfo",
+          opts
+        )
+          .then((resp) => resp.json())
+          .then((data) => setStore({favorites: data.favorites}))
+          .catch((error) => console.log("Error", error));
+      },    
+
+      deleteFavorites: async (park_id) => {
+        const opts = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        };
+    
+        try {
+          const response = await fetch(
+            `https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite/${park_id}`,
+            opts
+          );
+          if (!response.ok) {
+            throw new Error("HTTP error! Status: ${response.status}");
+          }
+    
+          setStore(
+            {favorites: getStore().favorites.filter(
+              (fav) => fav !== park_id
+            )}
+          );
+        } catch (error) {
+          console.log("Error", error);
         }
       },
 

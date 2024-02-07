@@ -8,9 +8,9 @@ import background from '../../img/background-imgs/cabin-sunset.jpg';
 import { useParams } from 'react-router-dom';
 
 export const ParkProfilePage = () => {
-    let theId = useParams().theid
+    const theId = useParams().theid
     const {store,actions}= useContext(Context)
-    let park = store.parkList.find((item)=>item.id==theId)
+    const park = store.parkList.find((item)=>item.id==theId)
     return (
       <>
         <div
@@ -21,7 +21,7 @@ export const ParkProfilePage = () => {
         >
           <div className="side-by-side-container">
             <ParkProfileImage />
-            <ParkProfileInfo park={park}/>
+            {park && <ParkProfileInfo park={park}/>}
           </div>
           <ParkProfileAccordion />
         </div>
