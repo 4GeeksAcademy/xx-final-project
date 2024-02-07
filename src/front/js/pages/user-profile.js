@@ -4,23 +4,23 @@ import { ProfileBio } from "../component/User-Profile/profileBio";
 import { FavActivities } from "../component/User-Profile/favActivities";
 import { FavParks } from "../component/User-Profile/favParks";
 
-import "../../styles/user-profile/user-profile.css"
+import "../../styles/user-profile/user-profile.css";
 
 export const UserProfilePage = () => {
   return (
     <div className="background">
       <div className="grid">
         <div className="image">
-          < ImportImage />
-        </div>
-        <div className="userinfo">
-          < ProfileBio />
-          < FavActivities />
+          <ImportImage />
+          <div className="activity">
+            <ProfileBio />
+            <FavActivities />
+          </div>
         </div>
       </div>
       <div className="parkcards">
         <FavParks />
       </div>
     </div>
-  )
-}
+  );
+};

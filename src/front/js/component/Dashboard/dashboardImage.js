@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Image from 'react-bootstrap/Image';
-import Dashboardimage1 from '../../../img/Arianna\'s pngs/Dashboardimage1.jpg';
+import Dashboardimage1 from "../../../img/Arianna's pngs/Dashboardimage1.jpg";
 import ParkCardList from '/workspaces/xx-final-project/src/front/js/component/Dashboard/parkCard.js';
 import PopupSelection from '/workspaces/xx-final-project/src/front/js/component/Dashboard/popupSelection.js';
+import { Context } from '../../store/appContext';
 
 const DashboardImg = () => {
   const [searchQuery, setSearchQuery] = useState('');
