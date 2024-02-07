@@ -7,9 +7,9 @@ export const Dashboard = () => {
   return (
     <>
       <div>
-        <PopupSelection />
+        {/* <PopupSelection /> */}
         <DashboardImg />
-        <ParkCard />
+        {/* <ParkCard /> */}
       </div>
     </>
   );

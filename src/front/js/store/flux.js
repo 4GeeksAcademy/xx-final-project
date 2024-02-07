@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try{
-					const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/signup", opts)
+					const resp = await fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/signup", opts)
 					if(resp.status !== 200){
 						alert("There has been some error");
 						return false;
@@ -81,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				};
 				try{
-					const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/token", opts)
+					const resp = await fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/token", opts)
 					if(resp.status !== 200){
 						alert("There has been some error");
 						return false;
@@ -104,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Authorization": "Bearer " + store.token
 					}
 				};
-				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/hello", opts)
+				fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/hello", opts)
 					.then(resp => resp.json())
 					.then(data => setStore({ message: data.message }))
 					.catch(error => console.log("Error loading message from backend", error));
@@ -133,7 +133,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						park_id: id
 					})
 				};
-				fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite", opts)
+				fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/favorite", opts)
 					.then(resp => resp.json())
 					.catch(error => console.log("Error", error));
 			},
