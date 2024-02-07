@@ -27,7 +27,7 @@ export const Footer = () => {
   };
 
   return (
-    <div>
+    <div className=' navbar-light bg-light'>
       <Button onClick={handleShow}>
         <p className="contactBtn">Contact Us</p>
       </Button>
