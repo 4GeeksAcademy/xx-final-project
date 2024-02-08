@@ -9,9 +9,8 @@ export const ProfileBio = () => {
   const [bio, setBio] = useState("");
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
-
-  const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   const setField = (field, value) => {
     setForm({
@@ -27,6 +26,7 @@ export const ProfileBio = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowModal(false);
     console.log(form);
   };
 
