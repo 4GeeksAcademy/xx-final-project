@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       parkList: [],
       message: "test",
       favorites: [],
+      user_info: null
     },
 
     actions: {
@@ -53,17 +54,34 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
-          body: {
+          body:  JSON.stringify({
             "name": name,
             "bio": bio
-          }
+          })
         };
         await fetch(
           "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/userinfo",
           opts
         )
           .then((resp) => resp.json())
-          .then((data) => setStore({favorites: data.favorites}))
+          .catch((error) => console.log("Error", error));
+      },    
+
+      getInfo: async () => {
+        const opts = {
+          method: "GET",
+          headers: {
+            Referer: "test",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        };
+        await fetch(
+          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/usersinfo",
+          opts
+        )
+          .then((resp) => resp.json())
+          .then((data) => setStore({user_info: data}))
           .catch((error) => console.log("Error", error));
       },    
 

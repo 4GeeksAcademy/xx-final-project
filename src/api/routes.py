@@ -231,16 +231,16 @@ def get_info():
     if not decoded_token:
         return jsonify({"msg": "Failed to decode the token"}), 401
     
-    user_id = decoded_token["sub"]
+    user_email = decoded_token["sub"]
 
-    user_info = UserInfo.query.filter_by(user_id=user_id).first()
+    user = User.query.filter(User.email == user_email).first()
+
+    user_info = UserInfo.query.filter_by(user_id=user.id).first()
 
     if not user_info:
         return jsonify({"msg": "User information not found"}), 404 
     
     user_info_data = {
-        "id": user_info.id,
-        "user_id": user_info.user_id,
         "name": user_info.name,
         "bio": user_info.bio
     }

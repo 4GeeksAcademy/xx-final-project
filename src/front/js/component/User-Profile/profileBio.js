@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import "../../../styles/user-profile/profileBio.css";
 import { Button, Modal } from "react-bootstrap";
+import { Context } from "../../store/appContext";
 
 export const ProfileBio = () => {
+  const  {store, actions} = useContext(Context)
   const [form, setForm] = useState({});
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
@@ -27,14 +29,30 @@ export const ProfileBio = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowModal(false);
-    console.log(form);
+    actions.setInfo(
+      form.name,
+      form.bio);
   };
+
+  useEffect(() => {
+    if (store.token && store.token != "" && store.token != undefined) {
+      actions.getInfo();
+    }
+  }, [store.token]);
+  
+  console.log(store.user_info)
 
   return (
     <div>
-      <Modal.Title>
+      <h2>
         About You:
-      </Modal.Title>
+      </h2>
+      {store.user_info && 
+        <div>
+          <p>{store.user_info.name}</p>
+          <p>{store.user_info.bio}</p>
+        </div>
+      }
       <Button className="biobtn" onClick={handleShow}>Add Name and Bio</Button>
 
       <Modal show={showModal} onHide={handleClose} size="lg">
