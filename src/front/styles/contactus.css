@@ -1,4 +1,4 @@
-/* .mb-3 {
+.mb-3 {
     width: 300px;
     margin: 30px auto;
     align-self: center;
@@ -12,6 +12,14 @@
     text-align: center;
   }
 
-.form-control {
+/* .form-control {
     max-height: 173px;
 } */
+
+.contactBtn{
+    margin: 5px;
+}
+
+.contact-us{
+    margin-top: 200px;
+}

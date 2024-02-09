@@ -1,22 +1,37 @@
-.all{
-    width: 500px;
+ .box{
+    width: 600px;
     height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(171, 171, 171, 0.518);
+    border-radius: 50px;
 }
 
 .upload{
-    width: 125px;
-    height: 125px;
+    width: 200px;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(171, 171, 171, 0.518);
 }
 
-.text{
-    margin-bottom: 200px;
+label{
     font-size: 2rem;
+    cursor: pointer;
+}
+
+input{
+    display: none;
+}
+
+.uploadBtn{
+    margin-bottom: 400px;
+}
+
+img{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
 }

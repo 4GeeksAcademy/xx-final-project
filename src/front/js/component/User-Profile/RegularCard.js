@@ -13,7 +13,7 @@ export const RegularCard = ({data, deleteFavorites}) => {
     <Card style={{ width: "18rem", margin: "30px", display: "inline-block" }}>
       <Card.Img
         variant="top"
-        src=""
+        src={data.images[0].url}
         onError={(e) => {
           e.target.src = comingSoon;
         }}

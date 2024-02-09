@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, FavoritePark, UserInfo
+from api.models import db, User, FavoritePark, UserInfo, UserPhoto
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from sqlalchemy import and_
@@ -246,3 +246,44 @@ def get_info():
     }
     
     return jsonify(user_info_data), 200
+
+# @api.route('/upload', methods=['POST'])
+# def upload_photo():
+#     def decode_jwt_token(token):
+#         try:
+#             decodeded_token = decode_token(token)
+
+#             return decodeded_token
+#         except Exception as e:
+#             print (f"Error decoding JWT token: {str(e)}")
+#             return None
+    
+#     authorization_header = request.headers.get("Authorization")
+        
+#     jwt_token = authorization_header.split(" ")[1]
+
+#     decoded_token = decode_jwt_token(jwt_token)
+
+#     if not decoded_token:
+#         return jsonify({"msg": "Failed to decode the token"}), 401
+    
+#     print("Decoded Token:", decoded_token)
+
+#     user_email = decoded_token["sub"]
+
+#     user=User.query.filter(User.email == user_email).first()
+
+#     if not user:
+#         return jsonify({"msg": "User not found"}), 404
+
+#     if request.files and "photo" in request.files:
+#        photo_file = request.files["photo"]
+#        photo_path = f"uploads/{user.id}_{photo_file.filename}"
+#        photo_file.save(photo_path)
+
+#     new_photo = UserPhoto(user=user, photo=photo_path)
+
+#     db.session.add(new_photo)
+#     db.session.commit()
+
+#     return jsonify({"msg": "Success"}), 200

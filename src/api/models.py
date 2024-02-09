@@ -19,6 +19,8 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
+    photos = db.relationship("UserPhoto", backref="user", lazy=True)
+
 class FavoritePark(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -31,3 +33,8 @@ class UserInfo(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     name = db.Column(db.String(80), unique=False, nullable=False)
     bio = db.Column(db.String(500), unique=False, nullable=False)
+
+class UserPhoto(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    photo = db.Column(db.String(80), unique=False, nullable=False)
