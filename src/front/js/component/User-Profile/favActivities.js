@@ -7,6 +7,7 @@ export const FavActivities = ({ onActivitySelect }) => {
   const [showModal, setShowModal] = useState(false);
   const [activities, setActivities] = useState([]);
   const [selectedActivities, setSelectedActivities] = useState([]);
+  const [selectedActivityType, setSelectedActivityType] = useState(null);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -33,6 +34,7 @@ export const FavActivities = ({ onActivitySelect }) => {
   const handleActivitySelect = (activity) => {
     if (selectedActivities.length < 5) {
       setSelectedActivities(prevSelected => [...prevSelected, activity]);
+      setSelectedActivityType(activity.name);
     } else {
       alert ("You can only select up to 5 activities.")
     }
@@ -40,7 +42,7 @@ export const FavActivities = ({ onActivitySelect }) => {
 
   const handleDone = () => {
     if (typeof onActivitySelect === "function"){
-      onActivitySelect(selectedActivities);
+      onActivitySelect(selectedActivities, selectedActivityType);
     }
     handleClose();
   };

@@ -22,6 +22,8 @@ export const ContactUsForm = ({ onSubmit }) => {
       // Pass form data to parent component
       onSubmit(formData);
       setFormData({ email: "", message: "" });
+      window.alert("Thank you for your input, we will get back to you as soon as possible!")
+      handleClose();
     };
 
     return (
