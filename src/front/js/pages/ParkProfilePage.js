@@ -9,14 +9,16 @@ import { useParams } from 'react-router-dom';
 
 export const ParkProfilePage = () => {
     const theId = useParams().theid
-    const {store,actions}= useContext(Context);
+    const {store, actions}= useContext(Context);
     const park = store.parkList.find((item)=>item.id==theId);
 
     if (!park) {
       return (
         <p>Park not found</p>
-      ); // You can render an error message or redirect to a different page
+      );
     }
+
+    console.log(park.activities[0].name)
 
     return (
       <>
@@ -27,10 +29,10 @@ export const ParkProfilePage = () => {
           }}
         >
           <div className="side-by-side-container">
-            <ParkProfileImage />
-            {park && <ParkProfileInfo park={park}/>}
+            <ParkProfileImage park={park}/>
+            <ParkProfileInfo park={park} />
           </div>
-          <ParkProfileAccordion />
+          <ParkProfileAccordion park={park}/>
         </div>
       </>
     );

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export const ParkProfileAccordion =
-  () => {
+
+function ParkProfileAccordion({ park }) {
+  const [loading, setLoading] = useState([]);
+  const [error, setError] = useState([]);
+
+
     return (
       <div className="entire-accordion">
         <Accordion defaultActiveKey="0">
@@ -12,43 +15,57 @@ export const ParkProfileAccordion =
               Activities
             </Accordion.Header>
             <Accordion.Body>
-              Details about
-              activities at
-              the park
+            {park.activities.map((activity, index) => (
+            <p key={index}>{activity.name}</p>
+            ))}
             </Accordion.Body>
           </Accordion.Item>
+
           <Accordion.Item eventKey="1">
             <Accordion.Header>
-              Cost
+              Costs
             </Accordion.Header>
             <Accordion.Body>
-              Details about the costs associated with visiting the park
+            <ul>
+              {park.entranceFees.map((fee, index) => (
+                <li key={index}>
+                  <strong>{fee.title}: </strong>
+                    {fee.description} - ${fee.cost}
+                </li>
+              ))}
+            </ul>
             </Accordion.Body>
           </Accordion.Item>
+
           <Accordion.Item eventKey="2">
             <Accordion.Header>
-              Accessibility
+              Directions
             </Accordion.Header>
             <Accordion.Body>
-              Details about accessibility at the park
+            <p>{park.directionsInfo}</p>
             </Accordion.Body>
           </Accordion.Item>
+
           <Accordion.Item eventKey="3">
             <Accordion.Header>
-              Parking
+              Weather
             </Accordion.Header>
             <Accordion.Body>
-              Details about parking at the park
+            <p>{park.weatherInfo}</p>
             </Accordion.Body>
           </Accordion.Item>
+
           <Accordion.Item eventKey="4">
             <Accordion.Header>
-              Topics
+              Phone Numbers
             </Accordion.Header>
             <Accordion.Body>
-              Details about the park
+            {park.contacts.phoneNumbers.map((contact, index) => (
+            <p key={index}>{contact.phoneNumber} {contact.extension} ({contact.type})</p>
+            ))}
             </Accordion.Body>
           </Accordion.Item>
+
         </Accordion>
       </div>
     );
