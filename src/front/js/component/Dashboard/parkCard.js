@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Heart from "../../../img/Arianna's pngs/heart.png";
+import FilledHeart from "../../../img/Arianna's pngs/filledheart.png"
 import "../../../styles/parkCard.css";
 import { Context } from "../../store/appContext";
 import { Link } from "react-router-dom";
@@ -20,6 +21,7 @@ const truncateText = (text, limit) => {
 const ParkCard = ({ title, text, buttonText, imageUrl, state, id, onActivitySelect }) => {
   const truncatedText = truncateText(text, 10);
   const {store , actions} = useContext(Context)
+  const isFavorite = store.favorites.includes(id)
 
   return (
     <Card className="park-card">
@@ -35,11 +37,17 @@ const ParkCard = ({ title, text, buttonText, imageUrl, state, id, onActivitySele
             <button className="btn btn-primary">Learn More</button>
           </Link>
           <Button
-            onClick={() => actions.addFavorite(id)}
+            onClick={() => {
+              if (isFavorite) {
+                actions.deleteFavorites(id);
+              } else {
+                actions.addFavorite(id)
+              }
+            }}
             className="park-card-heart-button"
             variant="primary"
           >
-            {Heart}
+            {isFavorite ? <img src={FilledHeart} alt="Heart" /> : <img src={Heart} alt="Heart" /> }
           </Button>
         </div>
       </Card.Body>

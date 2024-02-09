@@ -4,15 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUpload
 } from '@fortawesome/free-solid-svg-icons';
-import { Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 export const ImportImage = () => {
   const [uploadImage, setUploadImage] = useState(null);
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files && event.target.files[0];
 
-    if (file){
+    if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
         setUploadImage(e.target.result);
@@ -21,24 +21,18 @@ export const ImportImage = () => {
     }
   };
 
-  const upload = () => {
-    console.log("Button was clicked!");
-  };
-
   return (
     <div className="box">
-      <Form>
-        <Form.Group className="all">
-          <Form.Text className="text">
-            Upload Photo
-          </Form.Text>
-        <FontAwesomeIcon className='upload' style={{ position:'absolute' }}
+      <Button className="uploadBtn">
+        <label className="upload-label" htmlFor="input-file">
+          Upload Image
+          <input className="input" type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" onChange={handleImageChange} />
+        </label>
+      </Button>
+      <FontAwesomeIcon className='upload' style={{ position: 'absolute' }}
         icon={faUpload}
-        onChange={handleImageChange}
-        onClick={upload}
-        />
-        </Form.Group>
-      </Form>
+      />
+        {uploadImage && <img src={uploadImage} alt="Uploaded" />}
     </div>
   );
 };
