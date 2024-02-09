@@ -85,6 +85,35 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log("Error", error));
       },    
 
+      updateInfo: async (name, bio) => {
+        const opts = {
+          method: "PUT",
+          headers: {
+            Referer: "test",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+          body:  JSON.stringify({
+            "name": name,
+            "bio": bio
+          })
+        };
+
+        try {
+          const response = await fetch(
+            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/userinfo",
+          opts
+          );
+          if (!response.ok){
+            throw new Error("Failed to update user information: ${response.statusText}")
+          }
+            const responseData = await response.json(); 
+            console.log("Update successful:", responseData) 
+        } catch (error) {
+          console.error("Error updating user information:", error.message);
+        }
+      }, 
+
       deleteFavorites: async (park_id) => {
         const opts = {
           method: "DELETE",

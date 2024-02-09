@@ -26,13 +26,13 @@ export const ContactUsForm = ({ onSubmit }) => {
 
     return (
         <div className='contactUs'>
-            <Button onClick={handleShow}>
+            <button onClick={handleShow}>
                 <p className="contactBtn">Contact Us</p>
-            </Button>
+            </button>
 
-            <Modal className="contact-us" show={showModal}>
+            <Modal className="contact-us"  onHide={handleClose} show={showModal} size="lg" centered>
                 <Form className="formContainer" onSubmit={handleSubmit}>
-                    <h4>Contact Us</h4>
+                    <h2 className='title'>Contact Us</h2>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control
@@ -43,7 +43,7 @@ export const ContactUsForm = ({ onSubmit }) => {
                             onChange={handleChange}
                         />
                     </Form.Group>
-                    <Form.Group className="mb-3=" controlId="exampleForm.ControlTextarea1">
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Your message</Form.Label>
                         <Form.Control
                             placeholder='Ask us a question or suggest something you would like to see on our website!'

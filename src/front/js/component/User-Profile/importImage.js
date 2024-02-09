@@ -24,9 +24,9 @@ export const ImportImage = () => {
   return (
     <div className="box">
       <Button className="uploadBtn">
-        <label htmlFor="input-file">
+        <label className="upload-label" htmlFor="input-file">
           Upload Image
-          <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" onChange={handleImageChange} />
+          <input className="input" type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" onChange={handleImageChange} />
         </label>
       </Button>
       <FontAwesomeIcon className='upload' style={{ position: 'absolute' }}

@@ -6,6 +6,7 @@ import "../../../styles/user-profile/favActivities.css"
 export const FavActivities = ({ onActivitySelect }) => {
   const [showModal, setShowModal] = useState(false);
   const [activities, setActivities] = useState([]);
+  const [selectedActivities, setSelectedActivities] = useState([]);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -30,15 +31,29 @@ export const FavActivities = ({ onActivitySelect }) => {
   }, []);
 
   const handleActivitySelect = (activity) => {
-    onActivitySelect(activity);
+    if (selectedActivities.length < 5) {
+      setSelectedActivities(prevSelected => [...prevSelected, activity]);
+    } else {
+      alert ("You can only select up to 5 activities.")
+    }
+  };
+
+  const handleDone = () => {
+    if (typeof onActivitySelect === "function"){
+      onActivitySelect(selectedActivities);
+    }
     handleClose();
+  };
+
+  const handleRemove = (activity) => {
+    setSelectedActivities(prevSelected => prevSelected.filter(a => a.id !== activity.id));
   };
 
   return (
     <div className='fav-activity'>
-    <Modal.Title>
-      Favorite Activities:
-    </Modal.Title>
+      <Modal.Title>
+        Favorite Activities:
+      </Modal.Title>
       <Button className='activity-button' variant="primary" onClick={handleShow}>
         Add
       </Button>
@@ -52,7 +67,7 @@ export const FavActivities = ({ onActivitySelect }) => {
             {activities.map((activity, index) => (
               <Button
                 key={index}
-                variant="secondary"
+                variant={selectedActivities.some(a => a.id === activity.id) ? "success" : "secondary"}
                 style={{ width: '144px', height: '144px', marginBottom: '15px' }}
                 onClick={() => handleActivitySelect(activity)}
               >
@@ -61,7 +76,23 @@ export const FavActivities = ({ onActivitySelect }) => {
             ))}
           </div>
         </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleDone}>
+            Done
+          </Button>
+        </Modal.Footer>
       </Modal>
+      <div>
+        <Modal.Title>Selected activities:</Modal.Title>
+        {selectedActivities.map((activity, index) => (
+          <span key={index} className="selected-activity">
+            {activity.name}
+            <Button variant="danger" size="sm" onClick={() => handleRemove(activity)}>
+              Remove
+            </Button>
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

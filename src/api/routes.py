@@ -210,6 +210,54 @@ def set_info():
     db.session.commit()
     return jsonify({"msg": "Success"}), 200
 
+@api.route('/userinfo', methods=['PUT'])
+def update_info():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404 
+    
+    user_info = UserInfo.query.filter_by(user_id=user.id).first()
+
+    if not user_info:
+        return jsonify({"msg": "User information not found"}), 404
+    
+    try:
+        data = request.get_json()
+
+        if 'name' in data:
+            user_info.name = data["name"]
+        if "bio" in data:
+            user_info.bio = data['bio']
+    except Exception as e:
+        db.session.rollback()
+        return ({"msg": f"Error updating user information: {str(e)}"}), 500
+    
+    db.session.commit()
+    return jsonify({"msg": "Success"}), 200
+
 @api.route('/usersinfo', methods=['GET'])
 @jwt_required()
 def get_info():

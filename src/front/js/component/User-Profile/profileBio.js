@@ -7,8 +7,6 @@ import { Context } from "../../store/appContext";
 export const ProfileBio = () => {
   const { store, actions } = useContext(Context)
   const [form, setForm] = useState({});
-  const [name, setName] = useState("");
-  const [bio, setBio] = useState("");
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
@@ -34,6 +32,14 @@ export const ProfileBio = () => {
       form.bio);
   };
 
+  const handleEditClick = () => {
+    setForm({
+      name: store.user_info.name || "",
+      bio: store.user_info.bio || ""
+    });
+    setShowModal(true)
+  };
+
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined) {
       actions.getInfo();
@@ -42,7 +48,7 @@ export const ProfileBio = () => {
 
   return (
     <div>
-      {!store.user_info ? (
+      {!store.user_info || !store.user_info.name || !store.user_info.bio ? (
         <div>
           <h2>
             About You:
@@ -95,7 +101,7 @@ export const ProfileBio = () => {
           <h2>
             About You:
           </h2>
-          <Button className="editBtn">Edit</Button>
+          <Button className="editBtn" onClick={handleEditClick}>Edit</Button>
           </div>
           <p>{store.user_info.name}</p>
           <p>{store.user_info.bio}</p>

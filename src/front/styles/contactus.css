@@ -18,8 +18,14 @@
 
 .contactBtn{
     margin: 5px;
+    outline: none;
 }
 
+.title{
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
 .contact-us{
-    margin-top: 200px;
+    
 }
