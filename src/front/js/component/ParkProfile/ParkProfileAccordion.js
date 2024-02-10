@@ -72,9 +72,9 @@ function ParkProfileAccordion({ park }) {
             <Accordion.Body>
             {park.contacts.phoneNumbers.map((contact, index) => (
             <p key={index} className="phone-number">
-              <span>{contact.type}: </span>
-              {`(${contact.phoneNumber.slice(0, 3)}) ${contact.phoneNumber.slice(3, 6)}-${contact.phoneNumber.slice(6, 10)}`} 
-              {contact.extension && <span> {contact.extension}</span>}
+              {contact.type}: {park.contacts.phoneNumbers.map((contact, index) => (
+            <p key={index}>{contact.phoneNumber} {contact.extension}</p>
+            ))}
             </p>
             ))}
             </Accordion.Body>

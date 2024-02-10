@@ -1,20 +1,21 @@
 /* Page CSS */
-/* body::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
-} */
+}
 
 .background {
     background-size: cover;
     width: '100%';
     height: '100%',
   }
+
   
   .side-by-side-container {
     display: flex;
-    margin: 0 20px 20px 20px;
-    padding: 100px;
-    padding-bottom: 30px;
-    padding-top: 20px;
+    margin: 0 20px 20px 70px;
+    padding: 50px;
+    padding-bottom: 20px;
+    padding-top: 30px;
   }
   
   .ParkProfileImage,
@@ -24,19 +25,18 @@
   }
   
   /* Park Image CSS */
-  
+  .image-container {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+  }
   .parkImage {
-    width: 100%;
-    max-width: 95%;
-    height: 87%;
-    margin: 30px 0 10px 30px;
     border-radius: 25px;
   }
   
   /* Park Profile Card CSS */
   .parkInfo {
     width: 75%;
-    /* height: 30%; */
     margin: 30px 30px 0 10px;
     border-radius: 25px;
   }
@@ -65,7 +65,7 @@
   
   /* Accordion CSS */
   .entire-accordion {
-    width: 95%;
+    width: 90%;
     margin: 0 auto;
     padding-bottom: 40px;
     padding: 0px 30px 50px;

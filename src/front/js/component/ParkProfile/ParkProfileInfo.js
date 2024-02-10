@@ -5,11 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 function ParkProfileInfo({ park }) {
-  const [loading, setLoading] = useState(null);
-  const [error, setError] = useState(null);
 
   return (
-    <div>
+    <div className='parkCard'>
       <Card className="parkInfo mb-5">
         <Card.Header className="name-text">
           {park.fullName}
@@ -43,7 +41,7 @@ function ParkProfileInfo({ park }) {
           </div>
         </Card.Footer>
       </Card>
-    </div>
+      </div>
   );
 }
 
