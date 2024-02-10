@@ -26,7 +26,9 @@ function ParkProfileInfo({ park }) {
         <Card.Body>
           <Card.Title>Description</Card.Title>
           <Card.Text>{park.description || "Loading..."}</Card.Text>
-          <Button variant="primary">Link to more details</Button>
+          <a href={park.url} target="_blank" rel="noopener noreferrer">
+          <Button variant="primary">Link to NPS.gov</Button>
+          </a>
         </Card.Body>
         <Card.Footer>
           <p className="hrs-of-operation-header">Hours of Operation</p>

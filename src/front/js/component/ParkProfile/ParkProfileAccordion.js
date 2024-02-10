@@ -9,7 +9,7 @@ function ParkProfileAccordion({ park }) {
 
     return (
       <div className="entire-accordion">
-        <Accordion defaultActiveKey="0">
+        <Accordion defaultActiveKey="{null}">
           <Accordion.Item eventKey="0">
             <Accordion.Header>
               Activities
@@ -26,14 +26,24 @@ function ParkProfileAccordion({ park }) {
               Costs
             </Accordion.Header>
             <Accordion.Body>
+            {park.entrancePasses.length > 0 ? (
             <ul>
               {park.entranceFees.map((fee, index) => (
                 <li key={index}>
-                  <strong>{fee.title}: </strong>
-                    {fee.description} - ${fee.cost}
+                  <strong>{fee.title}: ${fee.cost} </strong>
+                    {fee.description}
+                </li>
+              ))}
+              {park.entrancePasses.map((pass, index) => (
+                <li key={index}>
+                  <strong>{pass.title}: ${pass.cost} </strong>
+                    {pass.description}
                 </li>
               ))}
             </ul>
+            ) : (
+              <p>No entrance fees</p>
+            )}
             </Accordion.Body>
           </Accordion.Item>
 
@@ -61,7 +71,11 @@ function ParkProfileAccordion({ park }) {
             </Accordion.Header>
             <Accordion.Body>
             {park.contacts.phoneNumbers.map((contact, index) => (
-            <p key={index}>{contact.phoneNumber} {contact.extension} ({contact.type})</p>
+            <p key={index} className="phone-number">
+              <span>{contact.type}: </span>
+              {`(${contact.phoneNumber.slice(0, 3)}) ${contact.phoneNumber.slice(3, 6)}-${contact.phoneNumber.slice(6, 10)}`} 
+              {contact.extension && <span> {contact.extension}</span>}
+            </p>
             ))}
             </Accordion.Body>
           </Accordion.Item>
