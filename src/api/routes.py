@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, send_file
 from api.models import db, User, FavoritePark, UserInfo, UserPhoto, UserActivity
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -465,14 +465,20 @@ def upload_photo():
     if '.' in photo_file.filename and photo_file.filename.rsplit('.', 1)[1].lower() not in allowed_extensions:
         return jsonify({"msg": "Invalid file type"}), 400
 
-    photo_path = f"uploads/{user.id}_{secure_filename(photo_file.filename)}"
+    photo_path = f"uploads/{user.id}_{(photo_file.filename)}"
     photo_file.save(photo_path)
 
-    user_photo = UserPhoto(user_id=user.id, photo="base64_encoded_photo_data", photo_path="/path/to/photo.jpg")
+    user_photo = UserPhoto(user_id=user.id, photo="base64_encoded_photo_data", photo_path=photo_path)
     db.session.add(user_photo)
     db.session.commit()
 
     return jsonify({"msg": "Success", "photo_path": photo_path}), 200
+
+@api.route('/uploads/<string:filename>')
+def uploaded_file(filename):
+    file_path = os.path.abspath( os.path.join("uploads", filename))
+
+    return send_file(file_path)
 
 @api.route('/usersphoto', methods=['GET'])
 @jwt_required()
@@ -509,7 +515,7 @@ def get_photo():
     
     photo_path = user_photo.photo_path
 
-    return jsonify(photo_data), 200
+    return jsonify(photo_path), 200
 
 
 @api.route('/updatephoto', methods=['PUT'])
