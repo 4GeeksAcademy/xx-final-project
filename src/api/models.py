@@ -38,6 +38,7 @@ class UserPhoto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     photo = db.Column(db.String(80), unique=False, nullable=False)
+    photo_path = db.Column(db.String(255))
 
 class UserActivity(db.Model):
     id = db.Column(db.Integer, primary_key=True)

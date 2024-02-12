@@ -34,7 +34,7 @@ export const FavActivities = () => {
         <Modal.Title>
           Favorite Activities:
         </Modal.Title>
-        <Button className='activity-button' variant="primary" onClick={handleShow}>
+        <Button className='addActivity' variant="primary" onClick={handleShow}>
           Add
         </Button>
       </div>
