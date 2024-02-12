@@ -17,6 +17,7 @@ import { Footer } from './component/footer';
 import { Login } from './pages/login';
 import { UserProfilePage } from './pages/user-profile';
 import { Dashboard } from './pages/dashboard';
+import { ForgotPassword } from './pages/ForgotPassword';
 
 //create your first component
 const Layout = () => {
@@ -30,7 +31,7 @@ const Layout = () => {
     !process.env
       .BACKEND_URL ||
     process.env.BACKEND_URL ==
-      ''
+    ''
   )
     return <BackendURL />;
 
@@ -42,13 +43,13 @@ const Layout = () => {
         <ScrollToTop>
           <Navbar />
           <Routes>
-           <Route
-            element={
+            <Route
+              element={
                 <Dashboard />
               }
               path="/"
             />
-          {/* <Route
+            {/* <Route
               element={
                 <Home />
               }
@@ -77,6 +78,12 @@ const Layout = () => {
                 <UserProfilePage />
               }
               path="/profile"
+            />
+            <Route
+              element={
+                <ForgotPassword />
+              }
+              path="/ForgotPassword"
             />
             <Route
               element={
