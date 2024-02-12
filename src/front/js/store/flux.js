@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/updatephoto",
+            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/useractivities",
             opts
           );
 
@@ -222,7 +222,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/userinfo",
+          "https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/userinfo",
           opts
         )
           .then((resp) => resp.json())
@@ -239,7 +239,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/usersinfo",
+          "https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/usersinfo",
           opts
         )
           .then((resp) => resp.json())
@@ -263,7 +263,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/userinfo",
+            "https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/userinfo",
             opts
           );
           if (!response.ok) {
@@ -286,7 +286,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorites",
+          "https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/favorites",
           opts
         )
           .then((resp) => resp.json())
@@ -305,7 +305,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            `https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite/${park_id}`,
+            `https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/favorite/${park_id}`,
             opts
           );
           if (!response.ok) {
@@ -351,7 +351,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         try {
-          const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/signup", opts)
+          const resp = await fetch("https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/signup", opts)
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
@@ -378,7 +378,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         try {
-          const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/token", opts)
+          const resp = await fetch("https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/token", opts)
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
@@ -401,7 +401,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Authorization": "Bearer " + store.token
           }
         };
-        fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/hello", opts)
+        fetch("https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/hello", opts)
           .then(resp => resp.json())
           .then(data => setStore({ message: data.message }))
           .catch(error => console.log("Error loading message from backend", error));

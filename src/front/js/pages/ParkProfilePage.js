@@ -18,8 +18,6 @@ export const ParkProfilePage = () => {
       );
     }
 
-    console.log(park.activities[0].name)
-
     return (
       <>
         <div
