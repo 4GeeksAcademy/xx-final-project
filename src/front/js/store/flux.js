@@ -3,9 +3,10 @@ const getState = ({ getStore, getActions, setStore }) => {
     store: {
       token: null,
       parkList: [],
-      message: "test",
       favorites: [],
-      user_info: null
+      user_info: null,
+      activity: [],
+      photo: null
     },
 
     actions: {
@@ -29,7 +30,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       setActivities: async (selectedActivityType) => {
-        const activityType = "your_activity_type";
         const opts = {
           method: "POST",
           headers: {
@@ -58,6 +58,84 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      getActivities: async () => {
+        const opts = {
+          method: "GET",
+          headers: {
+            Referer: "test",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        };
+        await fetch(
+          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/useractivities",
+          opts
+        )
+          .then((resp) => resp.json())
+          .then((data) => setStore({ activity: data.map(activity => activity.activity_type)}))
+          .catch((error) => console.log("Error", error));
+      },
+
+      handleActivitySelect: async (activity) => {
+        if (getStore().activity.length < 5) {
+          setStore({activity: [...getStore().activity, activity]});
+          
+          const opts = {
+            method: "POST",
+            headers: {
+              Referer: "test",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              activity_type: activity,
+            }),
+          };
+          try {
+            const response = await fetch(
+              "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/useractivities",
+              opts
+            );
+  
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+  
+            const data = await response.json();
+            console.log("Success", data);
+          } catch (error) {
+            console.error("Error", error);
+          }
+
+        } else {
+          alert ("You can only select up to 5 activities.")
+        }
+      },
+
+      handleActivityRemove: async(activity) => {
+        setStore({activity: getStore().activity.filter(a => a !== activity)});
+
+        const opts = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        };
+
+        try {
+          const response = await fetch(
+            `https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/activity/${activity}`,
+            opts
+          );
+          if (!response.ok) {
+            throw new Error("HTTP error! Status: ${response.status}");
+          }
+        } catch (error) {
+          console.log("Error", error);
+        }
+      },
+
       setPhoto: async () => {
         const opts = {
           method: "POST",
@@ -79,6 +157,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       setInfo: async (name, bio) => {
+        setStore({user_info: {name, bio}})
         const opts = {
           method: "POST",
           headers: {
@@ -281,15 +360,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         store.favorites.push(id)
         setStore(store)
-
-        // update to where it doesn't log user out after favoriting something
-        // setStore({
-        // 	user: {
-        // 		...store.user,
-        // 		favorites: updatedFavorites
-        // 	}
-        // });
-        // this part ^
 
         const opts = {
           method: "POST",

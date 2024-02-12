@@ -6,3 +6,15 @@
 .fav-activity{
     margin-top: 200px;
 }
+
+.top-activity{
+    display: flex;
+}
+
+.activity-button{
+    margin-left: 200px;
+}
+
+.activity-length{
+    margin-left: 400px;
+}

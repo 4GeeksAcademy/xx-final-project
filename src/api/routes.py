@@ -344,6 +344,85 @@ def set_activity():
 
     return jsonify({"msg": "Success"}), 200
 
+@api.route('/activity/<string:activity>', methods=['DELETE'])
+@jwt_required()
+def del_act(activity):
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_id = user.id
+    
+    delete_act = UserActivity.query.filter(and_(UserActivity.user_id == user_id, UserActivity.activity_type == activity)).first()
+
+    if not delete_act:
+        return jsonify({"msg": "Activity not found"}), 404
+
+    db.session.delete(delete_act)
+    db.session.commit()
+    return jsonify({"msg": "Success"}), 200
+
+
+@api.route('/useractivities', methods=['GET'])
+@jwt_required()
+def get_activity():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    user_email = decoded_token["sub"]
+
+    user = User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_activities = UserActivity.query.filter_by(user_id=user.id).all()
+
+    if not user_activities:
+        return jsonify({"msg": "No activities found for the user"}), 404
+    
+    activities_data = [{"activity_type": activity.activity_type} for activity in user_activities]
+
+    return jsonify(activities_data), 200
+
 @api.route('/upload', methods=['POST'])
 def upload_photo():
     def decode_jwt_token(token):

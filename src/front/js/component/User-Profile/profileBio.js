@@ -33,11 +33,12 @@ export const ProfileBio = () => {
   };
 
   const handleEditClick = () => {
+    console.log("test")
+    setShowModal(true)
     setForm({
       name: store.user_info.name || "",
       bio: store.user_info.bio || ""
     });
-    setShowModal(true)
   };
 
   useEffect(() => {
@@ -54,8 +55,20 @@ export const ProfileBio = () => {
             About You:
           </h2>
           <Button className="biobtn" onClick={handleShow}>Add Name and Bio</Button>
-
-          <Modal show={showModal} onHide={handleClose} size="lg">
+        </div>
+      ) : (
+        <div>
+          <div className="top-userinfo">
+          <h2>
+            About You:
+          </h2>
+          <Button className="editBtn" onClick={handleEditClick}>Edit</Button>
+          </div>
+          <p>{store.user_info.name}</p>
+          <p>{store.user_info.bio}</p>
+        </div>
+      )}
+      <Modal show={showModal} onHide={handleClose} size="lg">
             <Modal.Header closeButton>
               <Modal.Title>Edit your info</Modal.Title>
             </Modal.Header>
@@ -94,19 +107,6 @@ export const ProfileBio = () => {
               </div>
             </Modal.Body>
           </Modal>
-        </div>
-      ) : (
-        <div>
-          <div className="top-userinfo">
-          <h2>
-            About You:
-          </h2>
-          <Button className="editBtn" onClick={handleEditClick}>Edit</Button>
-          </div>
-          <p>{store.user_info.name}</p>
-          <p>{store.user_info.bio}</p>
-        </div>
-      )}
     </div>
   );
 };
