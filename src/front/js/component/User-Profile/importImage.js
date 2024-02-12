@@ -38,16 +38,23 @@ export const ImportImage = () => {
 
   return (
     <div className="box">
-      <Button className="uploadBtn">
-        <label className="upload-label" htmlFor="input-file">
-          Upload Image
-          <input className="input" type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" onChange={handleImageChange} />
-        </label>
-      </Button>
-      <FontAwesomeIcon className='upload' style={{ position: 'absolute' }}
-        icon={faUpload}
-      />
-      {uploadImage && <img src={uploadImage} alt="Uploaded" />}
+      {(store.token && (store.photo || !uploadImage)) ? (
+        <div>
+          {uploadImage && <img src={uploadImage} alt="Uploaded" />}
+        </div>
+      ) : (
+        <div>
+          <Button className="uploadBtn">
+            <label className="upload-label" htmlFor="input-file">
+              Upload Image
+              <input className="input" type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" onChange={handleImageChange} />
+            </label>
+          </Button>
+          <FontAwesomeIcon className='upload' style={{ position: 'absolute' }}
+            icon={faUpload}
+          />
+        </div>
+      )}
     </div>
   );
 };

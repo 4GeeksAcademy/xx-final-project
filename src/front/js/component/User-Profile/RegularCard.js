@@ -27,7 +27,7 @@ export const RegularCard = ({data, deleteFavorites}) => {
           {data.addresses[0].city}, {data.addresses[0].stateCode}
         </Card.Text>
         {/* <Link to={"/parkprofilepage/" + park.id}  state={{ type: data.type, index: data.id }}> */}
-        <Link to="/learnmore"  state={{ type: data.type, index: data.id }}>
+        <Link to={"/parkprofilepage/" + data.id}>
           <Button variant="primary" style={{ margin: "5px" }}>
             Learn More!
           </Button>

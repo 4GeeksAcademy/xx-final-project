@@ -29,7 +29,7 @@ export const FavParks = () => {
         {filteredCards &&
           filteredCards.map((favorite) => (
             <RegularCard
-              key={favorite.park_id}
+              key={favorite.id}
               data={favorite}
               deleteFavorites={actions.deleteFavorites}
             />
