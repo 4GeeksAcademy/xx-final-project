@@ -13,7 +13,6 @@ import {
 import { Context } from "../store/appContext"
 
 import Background from "../../img/background-imgs/road-desert.jpg"
-import { ForgotPassword } from './ForgotPassword';
 import "../../styles/login.css"
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -50,6 +49,7 @@ export const Login = () => {
   })
 
   return (
+    <div className="frame-screen">
     <div className='background' style={{ backgroundImage: `url(${Background})`, width: "100%", height: "100vh" }}>
       {store.token && store.token != "" && store.token != undefined ? (
         "You have successfully logged in" + store.token
@@ -107,6 +107,7 @@ export const Login = () => {
           </Form>
         </div>
       )}
+    </div>
     </div>
   );
 };

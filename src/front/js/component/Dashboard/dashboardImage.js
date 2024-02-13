@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
 import Image from 'react-bootstrap/Image';
-import Dashboardimage1 from "../../../img/Arianna's pngs/Dashboardimage1.jpg";
+import Dashboardimage1 from "../../../img/Arianna's pngs/Dashboardimage1.png";
 import ParkCardList from '/workspaces/xx-final-project/src/front/js/component/Dashboard/parkCard.js';
 import PopupSelection from '/workspaces/xx-final-project/src/front/js/component/Dashboard/popupSelection.js';
 import { Context } from '../../store/appContext';
+import '../../../styles/dashboard.css'
 
 const DashboardImg = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,14 +16,18 @@ const DashboardImg = () => {
 
   return (
     <div className='container-fluid'>
-      <div className='image-wrapper' style={{ position: 'relative', display: 'flex', justifyContent: 'center' }}>
+      <div className='image-wrapper dashboard-image-wrapper'>
         <Image
           src={Dashboardimage1}
           fluid
-          style={{ width: '1340px', height: '489px', position: 'relative' }}
+          className='dashboard-image'
         />
-        <div className='search-and-popup-container' style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)' }}>
+
+        <p className='results-text'>Results: </p>
+
+        <div className='search-and-popup-container'>
           <div className='search-bar'>
+            <p className='home-grown-text'>Home grown adventure</p>
             <input
               type="text"
               placeholder="Search by Park Name"
@@ -31,7 +36,7 @@ const DashboardImg = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <PopupSelection onActivitySelect={handleActivitySelect} />
+          <PopupSelection onActivitySelect={handleActivitySelect} className="popup-style"/>
         </div>
       </div>
       <ParkCardList searchQuery={searchQuery} selectedActivity={selectedActivity} />

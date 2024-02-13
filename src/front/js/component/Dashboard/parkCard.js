@@ -20,40 +20,43 @@ const truncateText = (text, limit) => {
 
 const ParkCard = ({ title, text, buttonText, imageUrl, state, id, onActivitySelect }) => {
   const truncatedText = truncateText(text, 10);
-  const {store , actions} = useContext(Context)
-  const isFavorite = store.favorites.includes(id)
+  const { store, actions } = useContext(Context);
+  const isFavorite = store.favorites.includes(id);
 
   return (
-    <Card className="park-card">
-      <Card.Img className="park-card-image" variant="top" src={imageUrl} />
-      <Card.Body className="park-card-body">
-        <div>
-          <Card.Title className="park-card-title">{title}</Card.Title>
-          <Card.Text className="park-card-title"> State: {state}</Card.Text>
-          <Card.Text className="park-card-text">{truncatedText}</Card.Text>
-        </div>
-        <div className="buttons">
-          <Link to={"/parkprofilepage/" + id}>
-            <button className="btn btn-primary">Learn More</button>
-          </Link>
-          <Button
-            onClick={() => {
-              if (isFavorite) {
-                actions.deleteFavorites(id);
-              } else {
-                actions.addFavorite(id)
-              }
-            }}
-            className="park-card-heart-button"
-            variant="primary"
-          >
-            {isFavorite ? <img src={FilledHeart} alt="Heart" /> : <img src={Heart} alt="Heart" /> }
-          </Button>
-        </div>
-      </Card.Body>
-    </Card>
+    <div className="park-card-container" style={{ width: '1340px' }}>
+      <Card className="park-card">
+        <Card.Img className="park-card-image" variant="top" src={imageUrl} />
+        <Card.Body className="park-card-body">
+          <div>
+            <Card.Title className="park-card-title">{title}</Card.Title>
+            <Card.Text className="park-card-title"> State: {state}</Card.Text>
+            <Card.Text className="park-card-text">{truncatedText}</Card.Text>
+          </div>
+          <div className="buttons">
+            <Link to={"/parkprofilepage/" + id} style={{ textDecoration: 'none' }}>
+              <button className="park-card-learn-more-button">Learn More</button>
+            </Link>
+            <Button
+              onClick={() => {
+                if (isFavorite) {
+                  actions.deleteFavorites(id);
+                } else {
+                  actions.addFavorite(id);
+                }
+              }}
+              className="park-card-heart-button"
+              variant="primary"
+            >
+              {isFavorite ? <img src={FilledHeart} alt="Heart" /> : <img src={Heart} alt="Heart" />}
+            </Button>
+          </div>
+        </Card.Body>
+      </Card>
+    </div>
   );
 };
+
 
 const ParkCardList = ({ searchQuery, selectedActivity }) => {
   const [cardsData, setCardsData] = useState([]);
@@ -90,9 +93,9 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
   };
 
     fetchData();
-  }, []); // Run only once when the component mounts
+  }, []);
 
-  // Filter cards based on searchQuery and selectedActivity
+ 
   const filteredCards = cardsData.filter((park) =>
     park.fullName.toLowerCase().includes(searchQuery.toLowerCase()) &&
     (!selectedActivity || park.activities.some(activity => activity.name === selectedActivity.name))
@@ -110,9 +113,9 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
               buttonText="Learn More"
               Heart={Heart}
               imageUrl={park.images[0].url}
-              state={park.states} // Add the 'states' property from the API response
+              state={park.states} 
               id = {park.id}
-              onActivitySelect={selectedActivity} // Pass the onActivitySelect function to ParkCard
+              onActivitySelect={selectedActivity} 
             />
           </Col>
         ))}

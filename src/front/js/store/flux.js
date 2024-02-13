@@ -422,7 +422,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             park_id: id
           })
         };
-        fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite", opts)
+        fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/favorite", opts)
           .then(resp => resp.json())
           .catch(error => console.log("Error", error));
       },

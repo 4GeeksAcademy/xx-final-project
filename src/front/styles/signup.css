@@ -3,7 +3,7 @@ form {
   margin: 0 auto;
   align-self: center;
 }
-.eye {
+.eye { 
   top: 25%;
   left: 90%;
   font-size: 1rem;
@@ -47,7 +47,7 @@ h6 {
   margin-bottom: 10px;
 }
 
-.btn {
+/* .btn {
   border: none;
   background: linear-gradient(to right, #ee84c5, #4e0e50);
-}
+} */
