@@ -10,7 +10,24 @@
 
 .biobtn {
   padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 5px;
+  background-color: white;
+  font-family: lato;
+  background: linear-gradient(
+    180deg,
+    rgb(248, 124.76, 11) 0%,
+    rgb(75.39, 2.87, 229.5) 100%
+  );
+  color: white;
+  width: 200px;
+  border-radius: 8px;
+  border: none;
+  height: 35px;
+  box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d,
+    0px 17px 17px -7px #0000000a;
 }
 
 .top-userinfo {
