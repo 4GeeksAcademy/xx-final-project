@@ -1,0 +1,66 @@
+.park-card {
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 327px;
+  height: 394px;
+  margin-bottom: 20px;
+  position: relative;
+  box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d,
+    0px 17px 17px -7px #0000000a;
+  border-radius: 15px;
+  display: inline-block;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.park-card-image {
+  width: 327px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.park-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.learnmore {
+  align-items: flex-start;
+  background: linear-gradient(
+    180deg,
+    rgb(248, 124.76, 11) 0%,
+    rgb(75.39, 2.87, 229.5) 100%
+  );
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  position: relative;
+  width: 220px;
+  height: 35px;
+  text-decoration: none;
+  border: none;
+  padding: 4px 14px;
+  font-size: 14px;
+}
+
+/* .heart-btn {
+  font-size: 14px;
+  background-color: transparent;
+  bottom: 10px;
+  margin: 5px;
+} */
+
+.buttons {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.city-state {
+  font-weight: bold;
+}

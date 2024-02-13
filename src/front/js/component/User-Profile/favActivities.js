@@ -242,10 +242,11 @@ export const FavActivities = () => {
           <Modal.Title>Choose up to 5</Modal.Title>
           <Modal.Title className='activity-length'>{store.activity.length}/5</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className='modal-body'>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
             {activities.filter(activity => !store.activity.includes(activity.name)).map((activity, index) => (
               <Button
+              className='modal-activities'
                 key={index}
                 style={{ width: '144px', height: '144px', marginBottom: '15px' }}
                 onClick={() => actions.handleActivitySelect(activity.name)}
@@ -261,14 +262,14 @@ export const FavActivities = () => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClose} variant="primary">
+          <Button className="done-btn" onClick={handleClose} variant="primary">
             Done
           </Button>
         </Modal.Footer>
       </Modal>
 
       <div className='carousel'>
-        <Carousel>
+        <Carousel className='car-item'>
           {store.activity.map((activity, index) => (
             <Carousel.Item key={index} className="selected-activity">
               <img
@@ -276,7 +277,7 @@ export const FavActivities = () => {
                 alt={activity}
                 style={{ width: '64px', height: '64px', objectFit: 'cover' }}
               />
-              <Carousel.Caption>
+              <Carousel.Caption className='activity-caption'>
                 <h3 className='activity-name'>{activity} </h3>
               </Carousel.Caption>
               <Button variant="danger" className='remove-btn' size="sm" onClick={() => actions.handleActivityRemove(activity)}>

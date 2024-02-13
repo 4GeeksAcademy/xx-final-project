@@ -1,22 +1,54 @@
-.name-input{
-    width: 300px;
-    padding: 10px;
+.name-input {
+  width: 300px;
+  padding: 10px;
 }
 
-.bio-input{
-    width: 300px;
-    height: 200px;
+.bio-input {
+  width: 300px;
+  height: 200px;
 }
 
-.biobtn{
-    padding: 15px;
-    margin: 5px;
+.biobtn {
+  padding: 15px;
+  margin: 5px;
 }
 
-.top-userinfo{
-    display:flex;
+.top-userinfo {
+  display: flex;
 }
 
-.editBtn{
-    margin-left: 200px;
+.editBtn {
+  margin-left: 200px;
+  background-color: white;
+  font-family: lato;
+  background: linear-gradient(
+    180deg,
+    rgb(248, 124.76, 11) 0%,
+    rgb(75.39, 2.87, 229.5) 100%
+  );
+  color: white;
+  width: 60px;
+  border-radius: 8px;
+  border: none;
+  height: 35px;
+  box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d,
+    0px 17px 17px -7px #0000000a;
+}
+
+.submit-btn {
+  margin-left: 200px;
+  background-color: white;
+  font-family: lato;
+  background: linear-gradient(
+    180deg,
+    rgb(248, 124.76, 11) 0%,
+    rgb(75.39, 2.87, 229.5) 100%
+  );
+  color: white;
+  width: 80px;
+  border-radius: 8px;
+  border: none;
+  height: 35px;
+  box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d,
+    0px 17px 17px -7px #0000000a;
 }

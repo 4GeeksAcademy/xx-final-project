@@ -13,17 +13,56 @@
 
 .addActivity{
     margin-left: 200px;
+    background-color: white;
+    font-family: lato;
+    background: linear-gradient(180deg, rgb(248, 124.76, 11) 0%, rgb(75.39, 2.87, 229.5) 100%);
+    color: white;
+    width: 60px;
+    border-radius: 8px;
+    border: none;
+    height: 35px;
+    box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d, 0px 17px 17px -7px #0000000a;
 }
 
 .activity-length{
     margin-left: 400px;
 }
 
-.remove-btn{
-    display: flex;
-    justify-content: center;
+.modal-body{
+    background-color: white;
+    color: black;
 }
 
-.activity-name{
+.remove-btn{
+    background-color: white;
+    margin-top: 45px;
+    font-family: lato;
+    background: linear-gradient(180deg, rgb(248, 124.76, 11) 0%, rgb(75.39, 2.87, 229.5) 100%);
+    color: white;
+    width: 102px;
+    border-radius: 8px;
+    border: none;
+    height: 35px;
+    box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d, 0px 17px 17px -7px #0000000a;
+}
+
+.done-btn{
+    margin-left: 200px;
+    background-color: white;
+    font-family: lato;
+    background: linear-gradient(180deg, rgb(248, 124.76, 11) 0%, rgb(75.39, 2.87, 229.5) 100%);
+    color: white;
+    width: 60px;
+    border-radius: 8px;
+    border: none;
+    height: 35px;
+    box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d, 0px 17px 17px -7px #0000000a;
+}
+
+.activity-caption{
     color: black;
+}
+
+.car-item{
+    margin-top: 50px;
 }

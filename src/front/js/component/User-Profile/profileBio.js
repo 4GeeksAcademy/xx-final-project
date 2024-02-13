@@ -99,7 +99,7 @@ export const ProfileBio = () => {
                       value={form.bio}
                       onChange={(e) => setField("bio", e.target.value)}
                     />
-                    <Button style={{ marginTop: "5px" }} onClick={handleSubmit}>
+                    <Button className="submit-btn" style={{ marginTop: "5px" }} onClick={handleSubmit}>
                       Submit
                     </Button>
                   </Form.Group>

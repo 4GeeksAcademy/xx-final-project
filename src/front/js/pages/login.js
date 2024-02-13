@@ -98,9 +98,9 @@ export const Login = () => {
             >
               Login
             </Button>
-            <Link to="/ForgotPassword" className="mt-3 submit-btn">
+            <Link to="/ForgotPassword" className="mt-3">
               <Button
-                className="mt-3 submit-btn"
+                className="mt-3 forgot-btn"
                 variant="primary"
               >Forgot Password?</Button>
             </Link>
