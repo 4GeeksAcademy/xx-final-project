@@ -98,7 +98,7 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
  
   const filteredCards = cardsData.filter((park) =>
     park.fullName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (!selectedActivity || park.activities.some(activity => activity.name === selectedActivity.name))
+    (!selectedActivity || park.activities && park.activities.some(activity => activity.name === selectedActivity.name))
   );
 
   return (

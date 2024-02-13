@@ -18,3 +18,12 @@
 .activity-length{
     margin-left: 400px;
 }
+
+.remove-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.activity-name{
+    color: black;
+}
