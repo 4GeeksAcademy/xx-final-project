@@ -28,8 +28,8 @@ export const ContactUsForm = ({ onSubmit }) => {
 
     return (
         <div className='contactUs'>
-            <button onClick={handleShow}>
-                <p className="contactBtn">Contact Us</p>
+            <button className="contactBtn bg-light" onClick={handleShow}>
+                <p>Contact Us</p>
             </button>
 
             <Modal className="contact-us"  onHide={handleClose} show={showModal} size="lg" centered>
