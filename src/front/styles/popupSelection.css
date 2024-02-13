@@ -1,5 +1,27 @@
 .activity-button {
-    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(180deg, rgb(248, 124.76, 11) 0%, rgb(75.39, 2.87, 229.5) 100%);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 4px;
+    box-shadow: var(--shadow-mainshadow);
     display: flex;
-    /* padding-right: 80px; */
-}
+    gap: 10px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 8px 14px;
+    position: relative;
+    width: 160px;
+    box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d, 0px 17px 17px -7px #0000000a;
+
+  }
+
+
+  .modal-activities { 
+    -webkit-backdrop-filter: blur(100px) brightness(100%);
+    align-items: flex-start;
+    backdrop-filter: blur(100px) brightness(100%);
+    background-color: #ffffff03;
+    border-radius: 20px;
+    box-shadow: 0px 4px 48px #1e5d9626;
+    color: #000;
+  }
