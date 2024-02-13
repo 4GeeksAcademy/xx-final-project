@@ -13,7 +13,6 @@ import {
 import { Context } from "../store/appContext"
 
 import Background from "../../img/background-imgs/road-desert.jpg"
-import { ForgotPassword } from './ForgotPassword';
 import "../../styles/login.css"
 import { Link, useNavigate } from 'react-router-dom';
 
