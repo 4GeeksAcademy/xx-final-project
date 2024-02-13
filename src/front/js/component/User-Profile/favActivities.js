@@ -208,6 +208,14 @@ export const FavActivities = () => {
     "atv off-roading": atvoff,
     "pool swimming": pool,
     "live music": music,
+    // "caving": ,
+    // "golfing": , 
+    // "river tubing": , 
+    // "ice climbing": , 
+    // "downhill skiing": , 
+    // "helicpter flying": , 
+    // "mini-golfing": , 
+    // "planetari": 
   };
 
   useEffect(() => {
