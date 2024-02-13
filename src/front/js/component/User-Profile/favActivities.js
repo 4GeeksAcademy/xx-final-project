@@ -240,7 +240,7 @@ export const FavActivities = () => {
       <Modal show={showModal} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Choose up to 5</Modal.Title>
-          <Modal.Title className='activity-length'>{store.activity.length}/5</Modal.Title>
+          <Modal.Title className='activity-length'>Activities: {store.activity.length}/5</Modal.Title>
         </Modal.Header>
         <Modal.Body className='modal-body'>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
@@ -286,6 +286,7 @@ export const FavActivities = () => {
             </Carousel.Item>
           ))}
         </Carousel>
+        <h5 className='amountAct'>Activities: {store.activity.length}/5</h5>
       </div>
     </div >
   );
