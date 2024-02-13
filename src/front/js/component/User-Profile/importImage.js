@@ -27,7 +27,6 @@ export const ImportImage = () => {
 
   useEffect(() => {
     if (store.token && store.token != "" && store.token != undefined) {
-
       if (store.photo) {
         setUploadImage(`https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/${store.photo}`)
       } else {
@@ -35,6 +34,8 @@ export const ImportImage = () => {
       }
     }
   }, [store.token, store.photo])
+
+  console.log("test")
 
   return (
     <div className="box">

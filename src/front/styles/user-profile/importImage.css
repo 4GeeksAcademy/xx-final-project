@@ -35,3 +35,8 @@ img{
     display: block;
     margin: auto;
 }
+
+.user-photo{
+    width: 500px;
+    height: 500px;
+}
