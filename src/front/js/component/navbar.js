@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
+
 import "../../styles/navbar.css"
 
 export const Navbar = () => {
@@ -17,16 +18,16 @@ export const Navbar = () => {
     <nav className="navbar navbar-light bg-light">
       <div className="container">
         <Link to="/" className="navbar-brand mb-0 h1">
-          <span className="logo-text">Sight Seeker</span>
+          <span className="logo-text">SIGHTSEEKER</span>
         </Link>
         <div className="ml-auto">
           {!store.token ? (
             <div>
               <Link to="/signup">
-                <button className="signup btn btn-primary">Sign Up</button>
+                <button className="navbar-signup-button">Sign Up</button>
               </Link>
               <Link to="/login">
-                <button className="btn btn-primary">Log in</button>
+                <button className="navbar-login-button">Log in</button>
               </Link>
             </div>
           ) : (

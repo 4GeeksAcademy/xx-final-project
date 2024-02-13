@@ -1,9 +1,15 @@
 .park-card {
+    justify-content: space-between;
+    align-items: flex-start;
     width: 327px;
     height: 394px;
     margin-bottom: 20px;
     position: relative;
+    box-shadow: 0px 1px 3px #0000000d, 0px 36px 28px -7px #0000000d, 0px 17px 17px -7px #0000000a;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
   
   .park-card-image {
@@ -18,10 +24,6 @@
     justify-content: space-between;
   }
 
-  .search-bar{
-    justify-content: center;
-    align-items: center;
-  }
   
   .park-card-title {
     font-size: 16px;
@@ -34,12 +36,23 @@
     margin-bottom: 10px;
   }
   
-  .park-card-button {
-    /* align-self: center; */
+  .park-card-learn-more-button {
+    align-items: flex-start;
+    background: linear-gradient(180deg, rgb(248, 124.76, 11) 0%, rgb(75.39, 2.87, 229.5) 100%);
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 4px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    position: relative;
+    width: 220px;
+    height: 35px;
+    text-decoration: none;
+    border: none;
+    padding: 4px 14px;
     font-size: 14px;
-    /* position: absolute; */
-    bottom: 10px;
-    margin: 5px;
   }
 
   .buttons {
@@ -48,9 +61,36 @@
   }
 
   .park-card-heart-button {
-    /* align-self: center; */
     font-size: 14px;
-    /* position: absolute; */
+    background-color: transparent;
     bottom: 10px;
     margin: 5px;
   }
+
+
+  .buttons {
+    display: flex;
+    align-items: center; 
+  }
+  
+  .park-card-learn-more-button,
+  .park-card-heart-button {
+    margin: 5px; 
+  }
+
+  .park-card-heart-button {
+    border: none;
+  } 
+  
+  .park-card-heart-button:hover {
+    background-color: transparent; 
+    border: none;
+  }
+
+.park-card-heart-button:focus,
+.park-card-heart-button:active {
+  outline: none;
+  background-color: transparent;
+  border: none; 
+}
+

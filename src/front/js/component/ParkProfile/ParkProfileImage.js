@@ -7,7 +7,7 @@ function ParkProfileImage({parkName}) {
       <div className="image-container">
         <Image
           className="parkImage"
-          src={"https://cdn.pixabay.com/photo/"+parkName}
+          // src={"https://cdn.pixabay.com/photo/"+parkName}
         />
       </div>
     </>
