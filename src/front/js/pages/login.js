@@ -13,11 +13,10 @@ import {
 import { Context } from "../store/appContext"
 
 import Background from "../../img/background-imgs/road-desert.jpg"
-
+import { ForgotPassword } from './ForgotPassword';
 import "../../styles/login.css"
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import GlassmorphismContainer from '../component/GlassmorphismContainer';
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -100,10 +99,12 @@ export const Login = () => {
             >
               Login
             </Button>
-            <Button
-              className="mt-3 submit-btn"
-              variant="primary"
-            >Forgot Password?</Button>
+            <Link to="/ForgotPassword" className="mt-3 submit-btn">
+              <Button
+                className="mt-3 submit-btn"
+                variant="primary"
+              >Forgot Password?</Button>
+            </Link>
           </Form>
         </div>
       )}

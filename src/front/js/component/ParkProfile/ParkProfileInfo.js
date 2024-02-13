@@ -5,11 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 
 function ParkProfileInfo({ park }) {
-  const [loading, setLoading] = useState(null);
-  const [error, setError] = useState(null);
 
   return (
-    <div>
+    <div className='parkCard'>
       <Card className="parkInfo mb-5">
         <Card.Header className="name-text">
           {park.fullName}
@@ -26,7 +24,9 @@ function ParkProfileInfo({ park }) {
         <Card.Body>
           <Card.Title>Description</Card.Title>
           <Card.Text>{park.description || "Loading..."}</Card.Text>
-          <Button variant="primary">Link to more details</Button>
+          <a href={park.url} target="_blank" rel="noopener noreferrer">
+          <Button variant="primary">Link to NPS.gov</Button>
+          </a>
         </Card.Body>
         <Card.Footer>
           <p className="hrs-of-operation-header">Hours of Operation</p>
@@ -41,7 +41,7 @@ function ParkProfileInfo({ park }) {
           </div>
         </Card.Footer>
       </Card>
-    </div>
+      </div>
   );
 }
 
