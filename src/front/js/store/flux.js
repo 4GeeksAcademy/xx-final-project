@@ -271,7 +271,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Authorization": "Bearer " + store.token
           }
         };
-        fetch("https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/hello", opts)
+        fetch("https://ominous-enigma-45wj5459rvjf7p4j-3001.app.github.dev/api/Authentication/ResetPassword?", opts)
           .then(resp => resp.json())
           .then(data => setStore({ message: data.message }))
           .catch(error => console.log("Error loading message from backend", error));
