@@ -22,7 +22,7 @@ const injectContext = (PassedComponent) => {
     );
 
     useEffect(() => {
-        state.actions.getParkInfo()
+        state.actions.getParkInfo();
         state.actions.syncTokenFromSessionStore();
     }, []);
 
