@@ -6,7 +6,7 @@ import "../../styles/login.css";
 import { Context } from "../store/appContext";
 
 export const ForgotPassword = () => {
-  const { actions } = useContext(Context);
+  // const { actions } = useContext(Context);
   const [email, setEmail] = useState("");
 
   const handleRequestPasswordReset = async () => {
