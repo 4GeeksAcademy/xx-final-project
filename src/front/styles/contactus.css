@@ -18,14 +18,14 @@
 
 .contactBtn{
     margin: 5px;
-    outline: none;
+    border: none;
+    display: grid;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .title{
     font-size: 2.5rem;
     display: flex;
     justify-content: center;
-}
-.contact-us{
-    
 }

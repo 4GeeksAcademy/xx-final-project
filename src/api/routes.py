@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, send_file
 from api.models import db, User, FavoritePark, UserInfo, UserPhoto, UserActivity
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -344,7 +344,86 @@ def set_activity():
 
     return jsonify({"msg": "Success"}), 200
 
-@api.route('/upload', methods=['POST'])
+@api.route('/activity/<string:activity>', methods=['DELETE'])
+@jwt_required()
+def del_act(activity):
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_id = user.id
+    
+    delete_act = UserActivity.query.filter(and_(UserActivity.user_id == user_id, UserActivity.activity_type == activity)).first()
+
+    if not delete_act:
+        return jsonify({"msg": "Activity not found"}), 404
+
+    db.session.delete(delete_act)
+    db.session.commit()
+    return jsonify({"msg": "Success"}), 200
+
+
+@api.route('/useractivities', methods=['GET'])
+@jwt_required()
+def get_activity():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    user_email = decoded_token["sub"]
+
+    user = User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_activities = UserActivity.query.filter_by(user_id=user.id).all()
+
+    if not user_activities:
+        return jsonify({"msg": "No activities found for the user"}), 404
+    
+    activities_data = [{"activity_type": activity.activity_type} for activity in user_activities]
+
+    return jsonify(activities_data), 200
+
+@api.route('/uploadphoto', methods=['POST'])
 def upload_photo():
     def decode_jwt_token(token):
         try:
@@ -373,14 +452,114 @@ def upload_photo():
     if not user:
         return jsonify({"msg": "User not found"}), 404
 
-    if request.files and "photo" in request.files:
-       photo_file = request.files["photo"]
-       photo_path = f"uploads/{user.id}_{photo_file.filename}"
-       photo_file.save(photo_path)
+    if 'photo' not in request.files:
+        return jsonify({"msg": "No photo uploaded"}), 400
 
-    new_photo = UserPhoto(user=user, photo=photo_path)
+    photo_file = request.files['photo']
 
-    db.session.add(new_photo)
+    if photo_file.filename == '':
+        return jsonify({"msg": "No selected file"}), 400
+
+        
+    allowed_extensions = {'png', 'jpg', 'jpeg', 'gif'}
+    if '.' in photo_file.filename and photo_file.filename.rsplit('.', 1)[1].lower() not in allowed_extensions:
+        return jsonify({"msg": "Invalid file type"}), 400
+
+    photo_path = f"uploads/{user.id}_{(photo_file.filename)}"
+    photo_file.save(photo_path)
+
+    user_photo = UserPhoto(user_id=user.id, photo="base64_encoded_photo_data", photo_path=photo_path)
+    db.session.add(user_photo)
     db.session.commit()
 
+    return jsonify({"msg": "Success", "photo_path": photo_path}), 200
+
+@api.route('/uploads/<string:filename>')
+def uploaded_file(filename):
+    file_path = os.path.abspath( os.path.join("uploads", filename))
+
+    return send_file(file_path)
+
+@api.route('/usersphoto', methods=['GET'])
+@jwt_required()
+def get_photo():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    user_email = decoded_token["sub"]
+
+    user = User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+    
+    user_photo = UserPhoto.query.filter_by(user_id=user.id).first()
+
+    if not user_photo:
+        return jsonify({"msg": "No photo found for the user"}), 404
+    
+    photo_path = user_photo.photo_path
+
+    return jsonify({"photo_path": photo_path}), 200
+
+
+@api.route('/updatephoto', methods=['PUT'])
+def update_photo():
+    def decode_jwt_token(token):
+        try:
+            decodeded_token = decode_token(token)
+
+            return decodeded_token
+        except Exception as e:
+            print (f"Error decoding JWT token: {str(e)}")
+            return None
+    
+    authorization_header = request.headers.get("Authorization")
+        
+    jwt_token = authorization_header.split(" ")[1]
+
+    decoded_token = decode_jwt_token(jwt_token)
+
+    if not decoded_token:
+        return jsonify({"msg": "Failed to decode the token"}), 401
+    
+    print("Decoded Token:", decoded_token)
+
+    user_email = decoded_token["sub"]
+
+    user=User.query.filter(User.email == user_email).first()
+
+    if not user:
+        return jsonify({"msg": "User not found"}), 404 
+    
+    user_info = UserPhoto.query.filter_by(user_id=user.id).first()
+
+    if not user_info:
+        return jsonify({"msg": "User Photo not found"}), 404
+    
+    try:
+        data = request.get_json()
+
+        if 'name' in data:
+            user_info.name = data["name"]
+    except Exception as e:
+        db.session.rollback()
+        return ({"msg": f"Error updating user information: {str(e)}"}), 500
+    
+    db.session.commit()
     return jsonify({"msg": "Success"}), 200

@@ -1,11 +1,14 @@
+const webURL = "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       token: null,
       parkList: [],
-      message: "test",
       favorites: [],
-      user_info: null
+      user_info: null,
+      activity: [],
+      photo: null
     },
 
     actions: {
@@ -28,8 +31,78 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
+      setPhoto: async (imageFile) => {
+        const formData = new FormData();
+        formData.append("photo", imageFile)
+        const opts = {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+          body: formData,
+        };
+
+        try {
+          const response = await fetch(
+            `${webURL}/api/uploadphoto`,
+            opts
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const responseData = await response.json();
+          console.log("Upload successful:", responseData);
+        } catch (error) {
+          console.error("Error uploading photo:", error.message);
+        }
+      },
+
+      getPhoto: async () => {
+        const opts = {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        };
+        await fetch(
+          `${webURL}/api/usersphoto`,
+          opts
+        )
+          .then((resp) => resp.json())
+          .then((data) => setStore({photo: data.photo_path}))
+          .catch((error) => console.log("Error", error));
+      },
+
+      updatePhoto: async () => {
+        const opts = {
+          method: "PUT",
+          headers: {
+            Referer: "test",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+          })
+        };
+
+        try {
+          const response = await fetch(
+            `${webURL}/api/uploadphoto`,
+            opts
+          );
+          if (!response.ok) {
+            throw new Error("Failed to update user information: ${response.statusText}")
+          }
+          const responseData = await response.json();
+          console.log("Update successful:", responseData)
+        } catch (error) {
+          console.error("Error updating user information:", error.message);
+        }
+      },
+
       setActivities: async (selectedActivityType) => {
-        const activityType = "your_activity_type";
         const opts = {
           method: "POST",
           headers: {
@@ -43,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            "https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/useractivities",
+            `${webURL}/api/useractivities`,
             opts
           );
 
@@ -58,27 +131,86 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      setPhoto: async () => {
+      getActivities: async () => {
         const opts = {
-          method: "POST",
+          method: "GET",
           headers: {
             Referer: "test",
             "Content-Type": "application/json",
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
-          body: JSON.stringify({
-
-          })
         };
         await fetch(
-          "https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/upload",
+          `${webURL}/api/useractivities`,
           opts
         )
           .then((resp) => resp.json())
+          .then((data) => setStore({ activity: data.map(activity => activity.activity_type) }))
           .catch((error) => console.log("Error", error));
       },
 
+      handleActivitySelect: async (activity) => {
+        if (getStore().activity.length < 5) {
+          setStore({ activity: [...getStore().activity, activity] });
+
+          const opts = {
+            method: "POST",
+            headers: {
+              Referer: "test",
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({
+              activity_type: activity,
+            }),
+          };
+          try {
+            const response = await fetch(
+              `${webURL}/api/useractivities`,
+              opts
+            );
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log("Success", data);
+          } catch (error) {
+            console.error("Error", error);
+          }
+
+        } else {
+          alert("You can only select up to 5 activities.")
+        }
+      },
+
+      handleActivityRemove: async (activity) => {
+        setStore({ activity: getStore().activity.filter(a => a !== activity) });
+
+        const opts = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        };
+
+        try {
+          const response = await fetch(
+            `${webURL}/api/activity/${activity}`,
+            opts
+          );
+          if (!response.ok) {
+            throw new Error("HTTP error! Status: ${response.status}");
+          }
+        } catch (error) {
+          console.log("Error", error);
+        }
+      },
+
       setInfo: async (name, bio) => {
+        setStore({ user_info: { name, bio } })
         const opts = {
           method: "POST",
           headers: {
@@ -92,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         await fetch(
-          "https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/userinfo",
+          `${webURL}/api/userinfo`,
           opts
         )
           .then((resp) => resp.json())
@@ -109,7 +241,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/usersinfo",
+          `${webURL}/api/usersinfo`,
           opts
         )
           .then((resp) => resp.json())
@@ -133,7 +265,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            "https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/userinfo",
+            `${webURL}/api/userinfo`,
             opts
           );
           if (!response.ok) {
@@ -156,7 +288,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/favorites",
+          `${webURL}/api/favorites`,
           opts
         )
           .then((resp) => resp.json())
@@ -175,7 +307,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            `https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/favorite/${park_id}`,
+            `${webURL}/api/favorite/${park_id}`,
             opts
           );
           if (!response.ok) {
@@ -221,7 +353,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         try {
-          const resp = await fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/signup", opts)
+          const resp = await fetch(`${webURL}/api/signup`, opts)
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
@@ -248,7 +380,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         try {
-          const resp = await fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/token", opts)
+          const resp = await fetch(`${webURL}/api/token`, opts)
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
@@ -271,7 +403,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Authorization": "Bearer " + store.token
           }
         };
-        fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/hello", opts)
+        fetch(`${webURL}/api/hello`, opts)
           .then(resp => resp.json())
           .then(data => setStore({ message: data.message }))
           .catch(error => console.log("Error loading message from backend", error));
@@ -281,15 +413,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         const store = getStore();
         store.favorites.push(id)
         setStore(store)
-
-        // update to where it doesn't log user out after favoriting something
-        // setStore({
-        // 	user: {
-        // 		...store.user,
-        // 		favorites: updatedFavorites
-        // 	}
-        // });
-        // this part ^
 
         const opts = {
           method: "POST",
@@ -301,7 +424,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             park_id: id
           })
         };
-        fetch("https://probable-xylophone-6944rq7jrxj3x5pv-3001.app.github.dev/api/favorite", opts)
+        fetch(`${webURL}/api/favorite`, opts)
           .then(resp => resp.json())
           .catch(error => console.log("Error", error));
       },

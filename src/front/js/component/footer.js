@@ -10,7 +10,7 @@ export const Footer = ({onSubmit}) => {
   }
 
   return (
-    <div className=' navbar-light bg-light'>
+    <div className='contact-us navbar-light bg-light'>
       <ContactUsForm onSubmit={handleFormSubit} />
     </div>
   );

@@ -21,7 +21,7 @@ const truncateText = (text, limit) => {
 const ParkCard = ({ title, text, buttonText, imageUrl, state, id, onActivitySelect }) => {
   const truncatedText = truncateText(text, 10);
   const { store, actions } = useContext(Context);
-  const isFavorite = store.favorites.includes(id);
+  const isFavorite = store.favorites && store.favorites.includes(id);
 
   return (
     <div className="park-card-container" style={{ width: '1340px' }}>
@@ -62,6 +62,8 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
   const [cardsData, setCardsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const parksPerPage = 20;
 
   const apiKey = "512wN5Ol0eTdyS4E6KexHiCdDezf6hpcCbbsnPcn";
   const apiUrl = "https://developer.nps.gov/api/v1/parks";
@@ -70,7 +72,7 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
     const fetchData = async () => {
       const params = {
         api_key: apiKey,
-        // limit: 500
+        limit: 500
       };
 
       const queryParams = new URLSearchParams(params);
@@ -83,44 +85,60 @@ const ParkCardList = ({ searchQuery, selectedActivity }) => {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
-      const data = await response.json();
-      setCardsData(data.data);
-      setLoading(false);
-    } catch (error) {
-      setError(error.message);
-      setLoading(false);
-    }
-  };
+        const data = await response.json();
+        setCardsData(data.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
 
     fetchData();
   }, []);
 
- 
+  
   const filteredCards = cardsData.filter((park) =>
-    park.fullName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (!selectedActivity || park.activities.some(activity => activity.name === selectedActivity.name))
+    park.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (!selectedActivity || park.activities && park.activities.some(activity => activity.name === selectedActivity.name))
   );
+
+
+  const indexOfLastPark = currentPage * parksPerPage;
+  const indexOfFirstPark = indexOfLastPark - parksPerPage;
+  const paginatedParks = filteredCards.slice(indexOfFirstPark, indexOfLastPark);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <>
-    <Container>
-      <Row>
-        {filteredCards.map((park, index) => (
-          <Col key={index} xs={12} md={3}>
-            <ParkCard
-              title={park.fullName}
-              text={park.description}
-              buttonText="Learn More"
-              Heart={Heart}
-              imageUrl={park.images[0].url}
-              state={park.states} 
-              id = {park.id}
-              onActivitySelect={selectedActivity} 
-            />
-          </Col>
+      <Container>
+        <Row>
+          {paginatedParks.map((park, index) => (
+            <Col key={index} xs={12} md={3}>
+              <ParkCard
+                title={park.fullName}
+                text={park.description}
+                buttonText="Learn More"
+                Heart={Heart}
+                imageUrl={park.images[0].url}
+                state={park.states}
+                id={park.id}
+                onActivitySelect={selectedActivity}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <div className="pagination">
+        {[...Array(Math.ceil(filteredCards.length / parksPerPage)).keys()].map((number) => (
+          <Button className="page-number" key={number} onClick={() => paginate(number + 1)}>
+            {number + 1}
+          </Button>
         ))}
-      </Row>
-    </Container>
+      </div>
     </>
   );
 };

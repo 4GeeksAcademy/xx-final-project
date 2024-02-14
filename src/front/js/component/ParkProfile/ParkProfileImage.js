@@ -22,6 +22,8 @@
 
 import React from 'react';
 import Image from 'react-bootstrap/Image';
+import { Context } from "../../store/appContext";
+
 
 function ParkProfileImage({ park }) {
   return (
