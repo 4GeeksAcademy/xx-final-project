@@ -90,19 +90,21 @@ export const Login = () => {
                 anyone else.
               </Form.Text>
             </Form.Group>
+            <div className="buttonContainer">
             <Button
-              className="mt-3 submit-btn"
+              className="LoginBtn"
               variant="primary"
               type="submit"
             >
               Login
             </Button>
-            <Link to="/ForgotPassword" className="mt-3 submit-btn">
+            <Link to="/ForgotPassword">
               <Button
-                className="mt-3 submit-btn"
+                className="ForgotBtn"
                 variant="primary"
               >Forgot Password?</Button>
             </Link>
+            </div>
           </Form>
         </div>
       )}

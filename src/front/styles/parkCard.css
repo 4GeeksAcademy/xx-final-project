@@ -35,16 +35,23 @@
   }
   
   .park-card-button {
-    /* align-self: center; */
-    font-size: 14px;
-    /* position: absolute; */
-    bottom: 10px;
-    margin: 5px;
+    border: none;
+    background: linear-gradient(to right, #ee84c5, #4e0e50);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
   }
 
   .buttons {
     justify-content: center;
     display: flex;
+    align-items: center; /* Center vertically */
+    height: 100%;
+    width: 100%;  /* Occupy full height of the card */
   }
 
   .park-card-heart-button {

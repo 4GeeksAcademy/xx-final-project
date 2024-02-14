@@ -34,7 +34,7 @@ const ParkCard = ({ title, text, buttonText, imageUrl, state, id, onActivitySele
         </div>
         <div className="buttons">
           <Link to={"/parkprofilepage/" + id}>
-            <button className="btn btn-primary">Learn More</button>
+            <Button className="park-card-button">Learn More</Button>
           </Link>
           <Button
             onClick={() => {

@@ -28,9 +28,9 @@ export const ContactUsForm = ({ onSubmit }) => {
 
     return (
         <div className='contactUs'>
-            <button onClick={handleShow}>
-                <p className="contactBtn">Contact Us</p>
-            </button>
+            <Button className="contactBtn" onClick={handleShow}>
+                Contact Us
+            </Button>
 
             <Modal className="contact-us"  onHide={handleClose} show={showModal} size="lg" centered>
                 <Form className="formContainer" onSubmit={handleSubmit}>
@@ -56,7 +56,7 @@ export const ContactUsForm = ({ onSubmit }) => {
                             onChange={handleChange}
                         />
                     </Form.Group>
-                    <div className="contactButtonContainer">
+                    <div className="formSubmitButton">
                         <Button
                             className="mt-3 submit-btn"
                             type="submit"

@@ -1,0 +1,10 @@
+.contactBtn{
+    margin: 5px;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}

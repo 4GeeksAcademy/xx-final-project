@@ -126,8 +126,7 @@ export const SignUp = () => {
         </Form.Group>
 
         <Button
-          className="mt-3"
-          variant="primary"
+          className="signupBtn"
           type="submit"
         >
           Submit
