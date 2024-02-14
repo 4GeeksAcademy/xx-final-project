@@ -1,3 +1,5 @@
+const webURL = "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -42,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/uploadphoto",
+            `${webURL}/api/uploadphoto`,
             opts
           );
 
@@ -65,11 +67,11 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/usersphoto",
+          `${webURL}/api/usersphoto`,
           opts
         )
           .then((resp) => resp.json())
-          .then((data) => setStore({photo: data}))
+          .then((data) => setStore({photo: data.photo_path}))
           .catch((error) => console.log("Error", error));
       },
 
@@ -87,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/uploadphoto",
+            `${webURL}/api/uploadphoto`,
             opts
           );
           if (!response.ok) {
@@ -114,7 +116,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         };
         try {
           const response = await fetch(
-            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/useractivities",
+            `${webURL}/api/useractivities`,
             opts
           );
 
@@ -139,7 +141,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/useractivities",
+          `${webURL}/api/useractivities`,
           opts
         )
           .then((resp) => resp.json())
@@ -164,7 +166,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           };
           try {
             const response = await fetch(
-              "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/useractivities",
+              `${webURL}/api/useractivities`,
               opts
             );
 
@@ -196,7 +198,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            `https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/activity/${activity}`,
+            `${webURL}/api/activity/${activity}`,
             opts
           );
           if (!response.ok) {
@@ -222,7 +224,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/userinfo",
+          `${webURL}/api/userinfo`,
           opts
         )
           .then((resp) => resp.json())
@@ -239,7 +241,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/usersinfo",
+          `${webURL}/api/usersinfo`,
           opts
         )
           .then((resp) => resp.json())
@@ -263,7 +265,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/userinfo",
+            `${webURL}/api/userinfo`,
             opts
           );
           if (!response.ok) {
@@ -286,7 +288,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           },
         };
         await fetch(
-          "https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorites",
+          `${webURL}/api/favorites`,
           opts
         )
           .then((resp) => resp.json())
@@ -305,7 +307,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         try {
           const response = await fetch(
-            `https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite/${park_id}`,
+            `${webURL}/api/favorite/${park_id}`,
             opts
           );
           if (!response.ok) {
@@ -351,7 +353,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         try {
-          const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/signup", opts)
+          const resp = await fetch(`${webURL}/api/signup`, opts)
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
@@ -378,7 +380,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
         };
         try {
-          const resp = await fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/token", opts)
+          const resp = await fetch(`${webURL}/api/token`, opts)
           if (resp.status !== 200) {
             alert("There has been some error");
             return false;
@@ -401,7 +403,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Authorization": "Bearer " + store.token
           }
         };
-        fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/hello", opts)
+        fetch(`${webURL}/api/hello`, opts)
           .then(resp => resp.json())
           .then(data => setStore({ message: data.message }))
           .catch(error => console.log("Error loading message from backend", error));
@@ -422,7 +424,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             park_id: id
           })
         };
-        fetch("https://jubilant-orbit-6qr7v7qp4grfrg6p-3001.app.github.dev/api/favorite", opts)
+        fetch(`${webURL}/api/favorite`, opts)
           .then(resp => resp.json())
           .catch(error => console.log("Error", error));
       },

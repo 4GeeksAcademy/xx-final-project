@@ -40,20 +40,34 @@
   overflow: hidden;
   color: white;
   position: relative;
-  width: 220px;
+  width: 200px;
   height: 35px;
-  text-decoration: none;
   border: none;
   padding: 4px 14px;
   font-size: 14px;
+  text-decoration: none !important; 
 }
 
-/* .heart-btn {
-  font-size: 14px;
+.heart-btn {
+  height: 30px;
+  width: 30px;
   background-color: transparent;
-  bottom: 10px;
   margin: 5px;
-} */
+  border: none;
+  padding: 0;
+}
+
+.heart-btn:hover {
+  background-color: transparent;
+  border: none;
+}
+
+.heart-btn:focus,
+.heart-btn:active {
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
 
 .buttons {
   justify-content: center;

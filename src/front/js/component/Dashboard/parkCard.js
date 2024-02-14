@@ -21,7 +21,7 @@ const truncateText = (text, limit) => {
 const ParkCard = ({ title, text, buttonText, imageUrl, state, id, onActivitySelect }) => {
   const truncatedText = truncateText(text, 10);
   const { store, actions } = useContext(Context);
-  const isFavorite = store.favorites.includes(id);
+  const isFavorite = store.favorites && store.favorites.includes(id);
 
   return (
     <div className="park-card-container" style={{ width: '1340px' }}>

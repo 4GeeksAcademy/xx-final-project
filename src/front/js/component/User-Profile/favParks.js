@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useContext } from "react";
 import { RegularCard } from "./RegularCard.js";
 import { Context } from "../../store/appContext.js";
+import "../../../styles/user-profile/favParks.css"
 
 export const FavParks = () => {
   const { store, actions } = useContext(Context);
@@ -25,7 +26,7 @@ export const FavParks = () => {
   return (
     <div>
       <h2>My Favorite Parks: </h2>
-      <div>
+      <div className="parkCardsWrapper">
         {filteredCards &&
           filteredCards.map((favorite) => (
             <RegularCard

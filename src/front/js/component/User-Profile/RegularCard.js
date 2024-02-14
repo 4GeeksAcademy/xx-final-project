@@ -22,7 +22,7 @@ export const RegularCard = ({ data, deleteFavorites, text }) => {
   const isFavorite = store.favorites.includes(data.id)
 
   return (
-    <div className="park-card-container" style={{ width: '1340px' }}>
+    <div className="park-card-container">
       <Card className="park-card" style={{ width: "18rem", margin: "30px", display: "inline-block" }}>
         <Card.Img
           className="park-card-image"
@@ -39,16 +39,16 @@ export const RegularCard = ({ data, deleteFavorites, text }) => {
             {truncatedText}
           </Card.Text >
           <div className="buttons">
-            <Link to={"/parkprofilepage/" + data.id}>
-              <Button className="learnmore buttons" variant="primary" style={{ margin: "5px" }}>
+            <Link to={"/parkprofilepage/" + data.id} style={{textDecoration: "none"}}>
+              <Button className="learnmore" variant="primary" style={{ margin: "5px" }}>
                 Learn More!
               </Button>
             </Link>
             <Button
-              className="heart-btn buttons"
+              className="heart-btn"
               variant="primary"
               onClick={() => deleteFavorites(data.id)}>
-              {isFavorite ? <img src={FilledFav} alt="Heart" /> : <img src={Fav} alt="Heart" />}
+              <img src={FilledFav} alt="Heart" />
             </Button>
           </div>
         </Card.Body>

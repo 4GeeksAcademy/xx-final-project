@@ -515,7 +515,7 @@ def get_photo():
     
     photo_path = user_photo.photo_path
 
-    return jsonify(photo_path), 200
+    return jsonify({"photo_path": photo_path}), 200
 
 
 @api.route('/updatephoto', methods=['PUT'])

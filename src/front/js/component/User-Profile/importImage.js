@@ -35,11 +35,11 @@ export const ImportImage = () => {
     }
   }, [store.token, store.photo])
 
-  console.log("test")
+  console.log(store.photo)
 
   return (
     <div className="box">
-      {(store.token && (store.photo || !uploadImage)) ? (
+      {(store.token && uploadImage) ? (
         <div>
           {uploadImage && <img src={uploadImage} alt="Uploaded" />}
         </div>
