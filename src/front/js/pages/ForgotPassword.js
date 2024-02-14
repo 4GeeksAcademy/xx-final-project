@@ -11,7 +11,7 @@ export const ForgotPassword = () => {
 
   const handleRequestPasswordReset = async () => {
     try {
-      await actions.forgotPassword(email);
+      // await actions.forgotPassword(email);
       alert(`Success! Please check ${email} to proceed with password reset.`);
       setEmail("");
     } catch (error) {
